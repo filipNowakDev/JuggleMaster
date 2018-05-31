@@ -1,7 +1,9 @@
 package com.filip.jugglemaster.screens;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.reflect.Field;
 import com.filip.jugglemaster.JuggleMasterGame;
@@ -11,6 +13,7 @@ public class GameplayScreen extends AbstractScreen
 {
 	private Ball ball;
 	private Button ballButton;
+	private Label scoreLabel;
 
 	public GameplayScreen(JuggleMasterGame game)
 	{
@@ -22,6 +25,17 @@ public class GameplayScreen extends AbstractScreen
 	{
 		initBall();
 		initBallButton();
+		initScoreLabel();
+	}
+
+	private void initScoreLabel()
+	{
+		Label.LabelStyle style = new Label.LabelStyle();
+		style.font = new BitmapFont();
+		scoreLabel = new Label("", style);
+		scoreLabel.setX(20);
+		scoreLabel.setY(750);
+		stage.addActor(scoreLabel);
 	}
 
 	private void initBallButton()
