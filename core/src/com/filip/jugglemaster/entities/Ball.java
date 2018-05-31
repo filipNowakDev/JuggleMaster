@@ -25,7 +25,8 @@ public class Ball extends Image
 
 	public void reactOnClick()
 	{
-		Action bump = Actions.moveBy(0, 100, 0.30f, Interpolation.bounceOut);
+		Action bump = Actions.sequence(Actions.moveBy(0, 200, 0.20f, Interpolation.exp5Out),
+				Actions.moveBy(0, -200, 0.20f, Interpolation.exp5In));
 		this.addAction(bump);
 	}
 }
