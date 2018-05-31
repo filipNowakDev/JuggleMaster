@@ -12,7 +12,8 @@ public class JuggleMasterGame extends Game
 	public static final String NAME = "Juggle Master";
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 800;
-	private boolean paused;
+	private boolean paused = false;
+	private int points = 0;
 
 	@Override
 	public void create()
@@ -26,6 +27,15 @@ public class JuggleMasterGame extends Game
 	{
 	}
 
+
+	public void addPoint()
+	{
+		points++;
+	}
+	public void resetPoints()
+	{
+		points = 0;
+	}
 	//------------------------------------------------
 	public boolean isPaused()
 	{
@@ -36,4 +46,10 @@ public class JuggleMasterGame extends Game
 	{
 		this.paused = paused;
 	}
+
+	public int getPoints()
+	{
+		return points;
+	}
+
 }
