@@ -1,6 +1,9 @@
 package com.filip.jugglemaster.entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Ball extends Image
@@ -18,5 +21,11 @@ public class Ball extends Image
 		this.setSize(width, height);
 		this.setPosition(starting_x, starting_y);
 
+	}
+
+	public void reactOnClick()
+	{
+		Action bump = Actions.moveBy(0, 100, 0.30f, Interpolation.bounceOut);
+		this.addAction(bump);
 	}
 }

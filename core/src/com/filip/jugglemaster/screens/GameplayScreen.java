@@ -31,13 +31,13 @@ public class GameplayScreen extends AbstractScreen
 		ballButton.setHeight(ball.getHeight());
 		ballButton.setX(ball.getX());
 		ballButton.setY(ball.getY());
-		ballButton.setDebug(true);
+		ballButton.setDebug(false);
 		stage.addActor(ballButton);
 		ballButton.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
 			{
-
+				ball.reactOnClick();
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
@@ -62,5 +62,7 @@ public class GameplayScreen extends AbstractScreen
 	private void update()
 	{
 		stage.act();
+		ballButton.setX(ball.getX());
+		ballButton.setY(ball.getY());
 	}
 }
