@@ -11,7 +11,7 @@ public class JuggleMasterGame extends Game
 {
 	public static final String NAME = "Juggle Master";
 	public static final int WIDTH = 480;
-	public static final int HEIGHT = 700;
+	public static final int HEIGHT = 800;
 	private boolean paused;
 
 	@Override
