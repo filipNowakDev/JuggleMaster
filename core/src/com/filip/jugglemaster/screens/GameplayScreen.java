@@ -2,6 +2,7 @@ package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.entities.Ball;
@@ -12,7 +13,7 @@ import com.filip.jugglemaster.ui.ScoreLabel;
 public class GameplayScreen extends AbstractScreen
 {
 	private Ball ball;
-	private Texture backgroundTexture;
+	private Image backgroundImage;
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
 
@@ -24,10 +25,16 @@ public class GameplayScreen extends AbstractScreen
 	@Override
 	protected void init()
 	{
-		backgroundTexture = new Texture("footballpitchscaled.jpg");
+		initBackground();
 		initBall();
 		initBallButton();
 		initScoreLabel();
+	}
+
+	private void initBackground()
+	{
+		backgroundImage = new Image(new Texture("footballpitchscaled.jpg"));
+		stage.addActor(backgroundImage);
 	}
 
 	private void initScoreLabel()
@@ -64,9 +71,6 @@ public class GameplayScreen extends AbstractScreen
 	{
 		super.render(delta);
 		update();
-		batch.begin();
-		batch.draw(backgroundTexture, 0, 0);
-		batch.end();
 
 		batch.begin();
 		stage.draw();
