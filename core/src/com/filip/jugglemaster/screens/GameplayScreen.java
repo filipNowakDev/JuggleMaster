@@ -2,6 +2,7 @@ package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
@@ -16,6 +17,7 @@ public class GameplayScreen extends AbstractScreen
 	private Image backgroundImage;
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
+	private Vector2 gravity = new Vector2(0, -600);
 
 	public GameplayScreen(JuggleMasterGame game)
 	{
@@ -53,6 +55,7 @@ public class GameplayScreen extends AbstractScreen
 			public void onClick()
 			{
 				ball.reactOnClick();
+				//ball.bump();
 				game.addPoint();
 				scoreLabel.setScore(game.getPoints());
 			}
@@ -79,7 +82,9 @@ public class GameplayScreen extends AbstractScreen
 
 	private void update()
 	{
+
 		stage.act();
+		ball.update(gravity);
 		ballButton.updatePosition();
 	}
 }
