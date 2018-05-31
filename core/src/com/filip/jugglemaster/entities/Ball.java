@@ -8,14 +8,14 @@ public class Ball extends Image
 	private static final int width = 100;
 	private static final int height = 100;
 	private static final int starting_x = 200;
-	private static final int starting_y = 50;
+	private static final int starting_y = 0;
 
 	public Ball()
 	{
-		super(new Texture("SoccerBall.jpg"));
+		super(new Texture("SoccerBall.png"));
 
 		this.setOrigin(width/2, height/2);
-		this.setScale(width, height);
+		this.setSize(width, height);
 		this.setPosition(starting_x, starting_y);
 
 	}
