@@ -24,7 +24,7 @@ public class BallButton extends Button
 		setHeight(ball.getHeight());
 		setX(ball.getX());
 		setY(ball.getY());
-		setDebug(true);
+		setDebug(false);
 		this.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)

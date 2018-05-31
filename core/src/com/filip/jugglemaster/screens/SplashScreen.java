@@ -24,7 +24,7 @@ public class SplashScreen extends AbstractScreen
 	protected void init()
 	{
 		//TODO Asset Manager
-		splashImage = new Texture("footballpitchscaled.jpg");
+		splashImage = new Texture("Splashscaled.jpg");
 	}
 
 	@Override
