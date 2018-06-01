@@ -13,7 +13,7 @@ public abstract class AbstractScreen implements Screen
 {
 	protected JuggleMasterGame game;
 	protected Stage stage;
-	private OrthographicCamera camera;
+	protected OrthographicCamera camera;
 	protected SpriteBatch batch;
 
 	public AbstractScreen(JuggleMasterGame game)

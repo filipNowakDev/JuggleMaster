@@ -1,8 +1,10 @@
 package com.filip.jugglemaster.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
@@ -17,6 +19,7 @@ public class GameplayScreen extends AbstractScreen
 	private Image backgroundImage;
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
+	private ScoreLabel recordLabel;
 	private Vector2 gravity = new Vector2(0, -600);
 
 	public GameplayScreen(JuggleMasterGame game)
@@ -31,6 +34,13 @@ public class GameplayScreen extends AbstractScreen
 		initBall();
 		initBallButton();
 		initScoreLabel();
+		initRecordLabel();
+	}
+
+	private void initRecordLabel()
+	{
+		recordLabel = new ScoreLabel(400, "Record: ");
+		stage.addActor(recordLabel);
 	}
 
 	private void initBackground()
@@ -41,9 +51,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initScoreLabel()
 	{
-		Label.LabelStyle style = new Label.LabelStyle();
-		style.font = new BitmapFont();
-		scoreLabel = new ScoreLabel();
+		scoreLabel = new ScoreLabel(20, "Score: ");
 		stage.addActor(scoreLabel);
 	}
 
@@ -54,10 +62,14 @@ public class GameplayScreen extends AbstractScreen
 			@Override
 			public void onClick()
 			{
-				ball.reactOnClick();
-				//ball.bump();
+
 				game.addPoint();
+				Vector3 cords = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+				System.out.println("CX: " + cords.x + " CY: " + cords.y);
+				ball.reactOnClick(cords.x, cords.y);
 				scoreLabel.setScore(game.getPoints());
+				recordLabel.setScore(game.getMaxPoints());
+
 			}
 		});
 		stage.addActor(ballButton);
@@ -85,6 +97,11 @@ public class GameplayScreen extends AbstractScreen
 
 		stage.act();
 		ball.update(gravity);
+		if(ball.isOnTheFloor())
+		{
+			game.resetPoints();
+			scoreLabel.setScore(game.getPoints());
+		}
 		ballButton.updatePosition();
 	}
 }

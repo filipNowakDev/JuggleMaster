@@ -14,6 +14,7 @@ public class JuggleMasterGame extends Game
 	public static final int HEIGHT = 800;
 	private boolean paused = false;
 	private int points = 0;
+	private int maxPoints = 0;
 
 	@Override
 	public void create()
@@ -31,6 +32,8 @@ public class JuggleMasterGame extends Game
 	public void addPoint()
 	{
 		points++;
+		if(points > maxPoints)
+			maxPoints = points;
 	}
 	public void resetPoints()
 	{
@@ -52,4 +55,8 @@ public class JuggleMasterGame extends Game
 		return points;
 	}
 
+	public int getMaxPoints()
+	{
+		return maxPoints;
+	}
 }
