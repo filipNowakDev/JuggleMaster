@@ -40,6 +40,7 @@ public class GameplayScreen extends AbstractScreen
 	private void initRecordLabel()
 	{
 		recordLabel = new ScoreLabel(400, "Record: ");
+		recordLabel.setScore(game.getMaxPoints());
 		stage.addActor(recordLabel);
 	}
 
@@ -65,7 +66,6 @@ public class GameplayScreen extends AbstractScreen
 
 				game.addPoint();
 				Vector3 cords = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-				System.out.println("CX: " + cords.x + " CY: " + cords.y);
 				ball.reactOnClick(cords.x, cords.y);
 				scoreLabel.setScore(game.getPoints());
 				recordLabel.setScore(game.getMaxPoints());

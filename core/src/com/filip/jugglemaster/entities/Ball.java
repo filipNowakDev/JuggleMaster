@@ -1,6 +1,7 @@
 package com.filip.jugglemaster.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -16,6 +17,7 @@ public class Ball extends Image
 	private Vector2 speed;
 	private float angleSpeed = 0;
 	private boolean onTheFloor;
+	private Sound kick;
 
 	public Ball()
 	{
@@ -26,6 +28,7 @@ public class Ball extends Image
 	private void init()
 	{
 		speed = new Vector2(0, 0);
+		kick = Gdx.audio.newSound(Gdx.files.internal("smackSound.wav"));
 		onTheFloor = true;
 		this.setOrigin(width / 2, height / 2);
 		this.setSize(width, height);
@@ -39,8 +42,8 @@ public class Ball extends Image
 			@Override
 			public void run()
 			{
+				kick.play();
 				Vector2 displacement = new Vector2(-(x - 50 - getX()), -(y - (getY() + 50)));
-				System.out.println(Gdx.input.getX() + " " + Gdx.input.getY());
 				speed = displacement.scl(10);
 				angleSpeed -= displacement.x * Math.signum(displacement.y);
 				if (onTheFloor && displacement.y > 0)
@@ -63,11 +66,17 @@ public class Ball extends Image
 	private void updatePosition(Vector2 gravity, int xSlowdown)
 	{
 		this.setPosition(this.getX() + Gdx.graphics.getDeltaTime() * speed.x, this.getY() + Gdx.graphics.getDeltaTime() * speed.y);
-		if (this.getY() < 0)
+		if (this.getY() <= 0)
 		{
 			onTheFloor = true;
+			if(Math.abs(speed.y) > 12)
+			{	if(Math.abs(speed.y / 500f) < 1f)
+					kick.play(Math.abs(speed.y / 500f));
+				else
+					kick.play();
+			}
 			this.setY(0);
-			speed.y = -speed.y / 3f;
+			speed.y = -speed.y / 2.5f;
 			xSlowdown = 1000;
 
 		}
@@ -77,13 +86,21 @@ public class Ball extends Image
 			speed.x = 0;
 		speed.add(0, gravity.y * Gdx.graphics.getDeltaTime());
 
-		if (getX() <= 0)
+		if (getX() <= -1)
 		{
 			setX(0);
+			if(Math.abs(speed.x / 500f) < 1f)
+				kick.play(Math.abs(speed.x / 500f));
+			else
+				kick.play();
 			speed.x = -speed.x;
-		} else if ((getX() + 100) >= 480)
+		} else if ((getX() + 100) >= 481)
 		{
 			setX(380);
+			if(Math.abs(speed.x / 500f) < 1f)
+				kick.play(Math.abs(speed.x / 500f));
+			else
+				kick.play();
 			speed.x = -speed.x;
 		}
 	}
