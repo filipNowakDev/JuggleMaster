@@ -30,6 +30,7 @@ public class Ball extends Image
 		speed = new Vector2(0, 0);
 		kick = Gdx.audio.newSound(Gdx.files.internal("smackSound.wav"));
 		onTheFloor = true;
+		this.setDebug(false);
 		this.setOrigin(width / 2, height / 2);
 		this.setSize(width, height);
 		this.setPosition(starting_x, starting_y);
@@ -53,6 +54,8 @@ public class Ball extends Image
 
 		this.addAction(bump);
 	}
+
+
 
 	public void update(final Vector2 gravity)
 	{
@@ -127,5 +130,19 @@ public class Ball extends Image
 	public boolean isOnTheFloor()
 	{
 		return onTheFloor;
+	}
+
+	public boolean collides(Coin coin)
+	{
+		float w = 0.5f * (this.getWidth() + coin.getWidth());
+		float h = 0.5f * (this.getHeight() + coin.getHeight());
+		float dx = this.getX() + this.getWidth()/2 - coin.getX() - coin.getWidth()/2;
+		float dy = this.getY() + this.getHeight()/2 - coin.getY() - coin.getHeight()/2;
+
+		if (Math.abs(dx) <= w && Math.abs(dy) <= h)
+		{
+			return true;
+		}
+		return false;
 	}
 }

@@ -35,6 +35,7 @@ public class BallButton extends Button
 		});
 	}
 
+
 	public void updatePosition()
 	{
 		setX(ball.getX() - 10);
