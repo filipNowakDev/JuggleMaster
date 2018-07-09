@@ -50,6 +50,18 @@ public class JuggleMasterGame extends Game
 	public void addPoint()
 	{
 		points++;
+		updateMaxPoins();
+	}
+
+	public void addPoints(int i)
+	{
+		points += i;
+		updateMaxPoins();
+
+	}
+
+	private void updateMaxPoins()
+	{
 		if(points > maxPoints)
 		{
 			maxPoints = points;
@@ -57,6 +69,7 @@ public class JuggleMasterGame extends Game
 			preferences.flush();
 		}
 	}
+
 	public void resetPoints()
 	{
 		points = 0;
@@ -81,4 +94,6 @@ public class JuggleMasterGame extends Game
 	{
 		return maxPoints;
 	}
+
+
 }

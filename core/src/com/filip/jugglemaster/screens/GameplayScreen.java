@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
+import com.filip.jugglemaster.controllers.CoinController;
 import com.filip.jugglemaster.entities.AnimatedActor;
 import com.filip.jugglemaster.entities.Ball;
 import com.filip.jugglemaster.entities.Coin;
@@ -23,7 +25,8 @@ public class GameplayScreen extends AbstractScreen
 	private ScoreLabel scoreLabel;
 	private ScoreLabel recordLabel;
 	private Vector2 gravity = new Vector2(0, -600);
-	private Coin coin;
+	//private Coin coin;
+	private CoinController coinController;
 
 	public GameplayScreen(JuggleMasterGame game)
 	{
@@ -35,17 +38,25 @@ public class GameplayScreen extends AbstractScreen
 	{
 		initBackground();
 		initBall();
-		initCoin();
+		//initCoin();
 		initBallButton();
 		initScoreLabel();
 		initRecordLabel();
+
+		initCoinController(stage, ball);
 	}
 
-	private void initCoin()
+	private void initCoinController(Stage stage, Ball ball)
+	{
+		coinController = new CoinController(stage, ball);
+
+	}
+
+	/*private void initCoin()
 	{
 		coin = new Coin(200, 500);
 		stage.addActor(coin);
-	}
+	}*/
 
 	private void initRecordLabel()
 	{
@@ -105,17 +116,18 @@ public class GameplayScreen extends AbstractScreen
 	private void update()
 	{
 
-		if(coin != null && ball.collides(coin))
+		/*if(coin != null && ball.collides(coin))
 		{
+			coin.onCollision();
 			for(int i = 0; i < 5; i++)
 				game.addPoint();
-			coin.remove();
 			coin = null;
 			scoreLabel.setScore(game.getPoints());
-		}
+		}*/
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		ball.update(gravity);
+		coinController.update(game, scoreLabel);
 		if(ball.isOnTheFloor())
 		{
 			game.resetPoints();
