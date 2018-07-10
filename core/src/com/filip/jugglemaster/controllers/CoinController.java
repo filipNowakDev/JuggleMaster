@@ -2,6 +2,7 @@ package com.filip.jugglemaster.controllers;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Timer;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.entities.Ball;
@@ -36,7 +37,8 @@ public class CoinController
 				randomizeSpawnTime();
 				if(coin == null)
 				{
-					coin = new Coin(200, 500);
+					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50);
+					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200, 6));
 					stage.addActor(coin);
 				}
 			}
@@ -46,18 +48,23 @@ public class CoinController
 
 	private void randomizeSpawnTime()
 	{
-		spawnTime = MathUtils.random(5, 10);
+		spawnTime = MathUtils.random(3, 7);
 	}
 
 
 	public void update(JuggleMasterGame game, ScoreLabel scoreLabel)
 	{
-		if(coin != null && ball.collides(coin))
+		if((coin != null && ball.collides(coin)))
 		{
 			coin.onCollision();
 			game.addPoints(5);
 			coin = null;
 			scoreLabel.setScore(game.getPoints());
+		}
+		else if(coin != null && coin.getY() < -50)
+		{
+			coin.remove();
+			coin = null;
 		}
 	}
 }
