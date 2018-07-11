@@ -14,7 +14,7 @@ public class Assets
 	public static String coin = "images/coin-sheet-scaled.png" ;
 
 	//------SOUNDS------
-	public static String kick = "sound/smackSound.wav";
+	public static String kick = "sound/smackSound.mp3";
 	public static String ding = "sound/ding.mp3";
 
 	public static void load()
