@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.filip.jugglemaster.assets.Assets;
 
 public class AnimatedActor extends Actor
 {
@@ -15,6 +16,7 @@ public class AnimatedActor extends Actor
 	private float stateTime;
 
 
+	//asset specified by 'path' must be loaded in Assets first
 	public AnimatedActor(String path, int cols, int rows)
 	{
 		stateTime = 0;
@@ -34,7 +36,7 @@ public class AnimatedActor extends Actor
 
 	private void initAnimationSheet(String path)
 	{
-		animationSheet = new Texture(Gdx.files.internal(path));
+		animationSheet = Assets.manager.get(path, Texture.class);
 	}
 
 	private void initAnimation(int cols, int rows)

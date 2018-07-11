@@ -11,6 +11,7 @@ public class SplashScreen extends AbstractScreen
 	public SplashScreen(final JuggleMasterGame game)
 	{
 		super(game);
+/*
 		Timer.schedule(new Timer.Task(){
 			@Override
 			public void run()
@@ -18,12 +19,12 @@ public class SplashScreen extends AbstractScreen
 				game.setScreen(new GameplayScreen(game));
 			}
 		}, 1);
+*/
 	}
 
 	@Override
 	protected void init()
 	{
-		//TODO Asset Manager
 		splashImage = new Texture("Splashscaled.jpg");
 	}
 

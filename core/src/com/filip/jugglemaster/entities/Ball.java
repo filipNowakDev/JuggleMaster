@@ -1,12 +1,14 @@
 package com.filip.jugglemaster.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.filip.jugglemaster.assets.Assets;
 
 public class Ball extends Image
 {
@@ -21,14 +23,14 @@ public class Ball extends Image
 
 	public Ball()
 	{
-		super(new Texture("SoccerBall.png"));
+		super(Assets.manager.get(Assets.ball, Texture.class));
 		init();
 	}
 
 	private void init()
 	{
 		speed = new Vector2(0, 0);
-		kick = Gdx.audio.newSound(Gdx.files.internal("smackSound.wav"));
+		kick = Assets.manager.get(Assets.kick, Sound.class);
 		onTheFloor = true;
 		this.setDebug(false);
 		this.setOrigin(width / 2, height / 2);

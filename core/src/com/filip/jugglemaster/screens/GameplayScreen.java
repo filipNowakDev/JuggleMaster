@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
+import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.controllers.CoinController;
 import com.filip.jugglemaster.entities.AnimatedActor;
 import com.filip.jugglemaster.entities.Ball;
@@ -48,7 +49,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initCoinController(Stage stage, Ball ball)
 	{
-		coinController = new CoinController(stage, ball);
+		coinController = new CoinController(stage, ball, game);
 
 	}
 
@@ -67,7 +68,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initBackground()
 	{
-		backgroundImage = new Image(new Texture("footballpitchscaled.jpg"));
+		backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
 		stage.addActor(backgroundImage);
 	}
 

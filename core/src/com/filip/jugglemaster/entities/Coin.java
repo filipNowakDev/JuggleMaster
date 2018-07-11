@@ -2,6 +2,7 @@ package com.filip.jugglemaster.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.filip.jugglemaster.assets.Assets;
 
 public class Coin extends AnimatedActor
 {
@@ -9,8 +10,8 @@ public class Coin extends AnimatedActor
 	private Sound ding;
 	public Coin(int x, int y)
 	{
-		super("coin-sheet-scaled.png", 14, 1);
-		ding = Gdx.audio.newSound(Gdx.files.internal("ding.mp3"));
+		super(Assets.coin, 14, 1);
+		ding = Assets.manager.get(Assets.ding, Sound.class);
 		setX(x);
 		setY(y);
 		setOrigin(getWidth()/2, getHeight()/2);

@@ -17,13 +17,13 @@ public class CoinController
 	private int spawnTime;
 	private Coin coin;
 
-	public CoinController(Stage stage, Ball ball)
+	public CoinController(Stage stage, Ball ball, JuggleMasterGame game)
 	{
-		init(stage, ball);
+		init(stage, ball, game);
 
 	}
 
-	private void init(final Stage _stage, Ball ball)
+	private void init(final Stage _stage, Ball ball, final JuggleMasterGame game)
 	{
 		randomizeSpawnTime();
 		this.stage = _stage;
@@ -38,7 +38,7 @@ public class CoinController
 				if(coin == null)
 				{
 					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50);
-					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200, 6));
+					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200, 32f / ((game.getPoints() / 5) + 1)));
 					stage.addActor(coin);
 				}
 			}
