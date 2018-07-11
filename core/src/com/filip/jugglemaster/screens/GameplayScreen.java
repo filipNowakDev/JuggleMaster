@@ -2,18 +2,14 @@ package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.controllers.CoinController;
-import com.filip.jugglemaster.entities.AnimatedActor;
 import com.filip.jugglemaster.entities.Ball;
-import com.filip.jugglemaster.entities.Coin;
 import com.filip.jugglemaster.ui.BallButton;
 import com.filip.jugglemaster.ui.IClickCallback;
 import com.filip.jugglemaster.ui.ScoreLabel;
@@ -62,7 +58,7 @@ public class GameplayScreen extends AbstractScreen
 	private void initRecordLabel()
 	{
 		recordLabel = new ScoreLabel(400, "Record: ");
-		recordLabel.setScore(game.getMaxPoints());
+		recordLabel.setScore(game.getScoreService().getMaxPoints());
 		stage.addActor(recordLabel);
 	}
 
@@ -86,11 +82,11 @@ public class GameplayScreen extends AbstractScreen
 			public void onClick()
 			{
 
-				game.addPoint();
+				game.getScoreService().addPoint();
 				Vector3 cords = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 				ball.reactOnClick(cords.x, cords.y);
-				scoreLabel.setScore(game.getPoints());
-				recordLabel.setScore(game.getMaxPoints());
+				scoreLabel.setScore(game.getScoreService().getPoints());
+				recordLabel.setScore(game.getScoreService().getMaxPoints());
 
 			}
 		});
@@ -131,8 +127,8 @@ public class GameplayScreen extends AbstractScreen
 		coinController.update(game, scoreLabel);
 		if(ball.isOnTheFloor())
 		{
-			game.resetPoints();
-			scoreLabel.setScore(game.getPoints());
+			game.getScoreService().resetPoints();
+			scoreLabel.setScore(game.getScoreService().getPoints());
 		}
 		ballButton.updatePosition();
 	}

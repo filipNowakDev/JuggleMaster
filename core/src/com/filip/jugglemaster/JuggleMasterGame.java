@@ -11,11 +11,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.screens.GameplayScreen;
 import com.filip.jugglemaster.screens.SplashScreen;
+import com.filip.jugglemaster.services.ScoreService;
 
 public class JuggleMasterGame extends Game
 {
 	private static final String  PREFS = "com.filip.jugglemaster.prefs";
-	private static final String  RECORD = "com.filip.jugglemaster.prefs.record";
+
 
 
 	public static final String NAME = "Juggle Master";
@@ -23,39 +24,38 @@ public class JuggleMasterGame extends Game
 	public static final int HEIGHT = 800;
 
 	private boolean paused = false;
-	private int points = 0;
-	private int maxPoints = 0;
+
 	private Preferences preferences;
+	private ScoreService scoreService;
 
 	@Override
 	public void create()
 	{
 		init();
+		initScoreService();
 		initAssets();
+		this.setScreen(new GameplayScreen(this));
+	}
 
+	private void initScoreService()
+	{
+		scoreService = new ScoreService(preferences);
 	}
 
 
 	private void initAssets()
 	{
 		Assets.load();
-		/*while(!Assets.manager.update())
-			System.out.println(Assets.manager.getProgress());*/
 		Assets.manager.finishLoading();
-		this.setScreen(new GameplayScreen(this));
 	}
 
 	private void init()
 	{
-		this.setScreen(new SplashScreen(this));
 		preferences = Gdx.app.getPreferences(PREFS);
-		loadRecord();
+		this.setScreen(new SplashScreen(this));
 	}
 
-	private void loadRecord()
-	{
-		maxPoints = preferences.getInteger(RECORD);
-	}
+
 
 
 	@Override
@@ -72,33 +72,7 @@ public class JuggleMasterGame extends Game
 		Assets.manager.finishLoading();
 	}
 
-	public void addPoint()
-	{
-		points++;
-		updateMaxPoins();
-	}
 
-	public void addPoints(int i)
-	{
-		points += i;
-		updateMaxPoins();
-
-	}
-
-	private void updateMaxPoins()
-	{
-		if(points > maxPoints)
-		{
-			maxPoints = points;
-			preferences.putInteger(RECORD, maxPoints);
-			preferences.flush();
-		}
-	}
-
-	public void resetPoints()
-	{
-		points = 0;
-	}
 	//------------------------------------------------
 	public boolean isPaused()
 	{
@@ -110,15 +84,8 @@ public class JuggleMasterGame extends Game
 		this.paused = paused;
 	}
 
-	public int getPoints()
+	public ScoreService getScoreService()
 	{
-		return points;
+		return scoreService;
 	}
-
-	public int getMaxPoints()
-	{
-		return maxPoints;
-	}
-
-
 }

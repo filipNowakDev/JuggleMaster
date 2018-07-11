@@ -38,7 +38,8 @@ public class CoinController
 				if(coin == null)
 				{
 					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50);
-					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200, 32f / ((game.getPoints() / 5) + 1)));
+					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200,
+							32f / ((game.getScoreService().getPoints() / 5) + 1)));
 					stage.addActor(coin);
 				}
 			}
@@ -57,9 +58,9 @@ public class CoinController
 		if((coin != null && ball.collides(coin)))
 		{
 			coin.onCollision();
-			game.addPoints(5);
+			game.getScoreService().addPoints(5);
 			coin = null;
-			scoreLabel.setScore(game.getPoints());
+			scoreLabel.setScore(game.getScoreService().getPoints());
 		}
 		else if(coin != null && coin.getY() < -50)
 		{
