@@ -9,13 +9,13 @@ public class Assets
 	public static AssetManager manager;
 
 	//------TEXTURES------
-	public static String ball = "SoccerBall.png";
-	public static String background = "footballpitchscaled.jpg";
-	public static String coin = "coin-sheet-scaled.png" ;
+	public static String ball = "images/SoccerBall.png";
+	public static String background = "images/footballpitchscaled.jpg";
+	public static String coin = "images/coin-sheet-scaled.png" ;
 
 	//------SOUNDS------
-	public static String kick = "smackSound.wav";
-	public static String ding = "ding.mp3";
+	public static String kick = "sound/smackSound.wav";
+	public static String ding = "sound/ding.mp3";
 
 	public static void load()
 	{
