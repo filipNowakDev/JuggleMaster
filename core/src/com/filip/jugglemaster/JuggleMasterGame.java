@@ -17,9 +17,6 @@ import com.filip.jugglemaster.services.ScoreService;
 public class JuggleMasterGame extends Game
 {
 	private static final String  PREFS = "com.filip.jugglemaster.prefs";
-
-
-
 	public static final String NAME = "Juggle Master";
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 800;

@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.title = JuggleMasterGame.NAME;
 		config.width = JuggleMasterGame.WIDTH;
 		config.height = JuggleMasterGame.HEIGHT;
-		config.resizable = false;
+		config.resizable = true;
 		new LwjglApplication(new JuggleMasterGame(), config);
 	}
 }
