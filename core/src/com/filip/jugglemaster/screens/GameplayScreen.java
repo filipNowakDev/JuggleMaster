@@ -1,6 +1,7 @@
 package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -22,7 +23,6 @@ public class GameplayScreen extends AbstractScreen
 	private ScoreLabel scoreLabel;
 	private ScoreLabel recordLabel;
 	private Vector2 gravity = new Vector2(0, -600);
-	//private Coin coin;
 	private CoinController coinController;
 
 	public GameplayScreen(JuggleMasterGame game)
@@ -35,7 +35,6 @@ public class GameplayScreen extends AbstractScreen
 	{
 		initBackground();
 		initBall();
-		//initCoin();
 		initBallButton();
 		initScoreLabel();
 		initRecordLabel();
@@ -49,15 +48,10 @@ public class GameplayScreen extends AbstractScreen
 
 	}
 
-	/*private void initCoin()
-	{
-		coin = new Coin(200, 500);
-		stage.addActor(coin);
-	}*/
 
 	private void initRecordLabel()
 	{
-		recordLabel = new ScoreLabel(400, "Record: ");
+		recordLabel = new ScoreLabel(320, "Record: ");
 		recordLabel.setScore(game.getScoreService().getMaxPoints());
 		stage.addActor(recordLabel);
 	}
@@ -108,19 +102,16 @@ public class GameplayScreen extends AbstractScreen
 		batch.begin();
 		stage.draw();
 		batch.end();
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.BACK))
+			game.setScreen(new MainMenuScreen(game));
 	}
+
+
 
 	private void update()
 	{
 
-		/*if(coin != null && ball.collides(coin))
-		{
-			coin.onCollision();
-			for(int i = 0; i < 5; i++)
-				game.addPoint();
-			coin = null;
-			scoreLabel.setScore(game.getPoints());
-		}*/
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		ball.update(gravity);

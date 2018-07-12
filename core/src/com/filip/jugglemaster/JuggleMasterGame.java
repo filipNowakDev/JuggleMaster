@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.screens.GameplayScreen;
+import com.filip.jugglemaster.screens.MainMenuScreen;
 import com.filip.jugglemaster.screens.SplashScreen;
 import com.filip.jugglemaster.services.ScoreService;
 
@@ -34,7 +35,7 @@ public class JuggleMasterGame extends Game
 		init();
 		initScoreService();
 		initAssets();
-		this.setScreen(new GameplayScreen(this));
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	private void initScoreService()

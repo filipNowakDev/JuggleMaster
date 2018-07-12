@@ -2,6 +2,7 @@ package com.filip.jugglemaster.ui;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.filip.jugglemaster.assets.Assets;
 
 public class ScoreLabel extends Label
 {
@@ -22,7 +23,7 @@ public class ScoreLabel extends Label
 	private static LabelStyle prepareLabelStyle()
 	{
 		LabelStyle style = new LabelStyle();
-		style.font = new BitmapFont();
+		style.font = Assets.manager.get(Assets.labelFont, BitmapFont.class)/* new BitmapFont()*/;
 		return style;
 	}
 
