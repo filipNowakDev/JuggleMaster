@@ -7,6 +7,7 @@ import com.filip.jugglemaster.assets.Assets;
 public class ScoreLabel extends Label
 {
 	String label;
+
 	public ScoreLabel(int x, int y, String label)
 	{
 		super("", prepareLabelStyle());

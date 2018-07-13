@@ -1,10 +1,8 @@
 package com.filip.jugglemaster.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.filip.jugglemaster.assets.Assets;
@@ -32,8 +30,8 @@ public class AnimatedActor extends Actor
 	{
 		setX(0);
 		setY(0);
-		setWidth(animationSheet.getWidth()/cols);
-		setHeight(animationSheet.getHeight()/rows);
+		setWidth(animationSheet.getWidth() / cols);
+		setHeight(animationSheet.getHeight() / rows);
 
 	}
 
@@ -50,9 +48,9 @@ public class AnimatedActor extends Actor
 				animationSheet.getHeight() / rows);
 		TextureRegion[] animationFrames = new TextureRegion[cols * rows];
 		int index = 0;
-		for(int i = 0; i < rows; i++)
+		for (int i = 0; i < rows; i++)
 		{
-			for(int j = 0; j < cols; j++)
+			for (int j = 0; j < cols; j++)
 			{
 				animationFrames[index++] = tmp[i][j];
 			}

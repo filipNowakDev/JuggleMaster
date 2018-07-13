@@ -20,12 +20,13 @@ public class BallButton extends Button
 
 	private void init(final IClickCallback callback)
 	{
-		setWidth(ball.getWidth() + ball.getWidth()/4);
-		setHeight(ball.getHeight() + ball.getHeight()/4);
-		setX(ball.getX() - ball.getWidth()/8);
-		setY(ball.getY() - ball.getHeight()/8);
+		setWidth(ball.getWidth() + ball.getWidth() / 4);
+		setHeight(ball.getHeight() + ball.getHeight() / 4);
+		setX(ball.getX() - ball.getWidth() / 8);
+		setY(ball.getY() - ball.getHeight() / 8);
 		setDebug(false);
-		this.addListener(new ClickListener(){
+		this.addListener(new ClickListener()
+		{
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
 			{
@@ -38,7 +39,7 @@ public class BallButton extends Button
 
 	public void updatePosition()
 	{
-		setX(ball.getX() - ball.getWidth()/8);
-		setY(ball.getY() - ball.getHeight()/8);
+		setX(ball.getX() - ball.getWidth() / 8);
+		setY(ball.getY() - ball.getHeight() / 8);
 	}
 }

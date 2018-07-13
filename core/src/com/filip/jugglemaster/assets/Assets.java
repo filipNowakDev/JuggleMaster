@@ -3,7 +3,6 @@ package com.filip.jugglemaster.assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,7 +19,7 @@ public class Assets
 	//------TEXTURES------
 	public static String ball = "images/SoccerBall.png";
 	public static String background = "images/footballpitchscaled.jpg";
-	public static String coin = "images/coin-sheet-scaled.png" ;
+	public static String coin = "images/coin-sheet-scaled.png";
 	public static String buttonAtlas = "images/buttons_pack.atlas";
 
 	//------SOUNDS--------
@@ -35,7 +34,7 @@ public class Assets
 
 	public static void load()
 	{
-		manager  = new AssetManager();
+		manager = new AssetManager();
 		loadTextures();
 		loadSounds();
 		loadFonts();
@@ -54,7 +53,7 @@ public class Assets
 
 		FreetypeFontLoader.FreeTypeFontLoaderParameter _labelFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 		_labelFont.fontFileName = labelFont;
-		_labelFont.fontParameters.size = Gdx.graphics.getWidth()/20;
+		_labelFont.fontParameters.size = Gdx.graphics.getWidth() / 20;
 		manager.load(labelFont, BitmapFont.class, _labelFont);
 	}
 

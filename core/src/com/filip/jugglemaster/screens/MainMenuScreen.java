@@ -49,7 +49,6 @@ public class MainMenuScreen extends AbstractScreen
 	}
 
 
-
 	private void initPlayButton()
 	{
 		MenuButton playButton = new MenuButton(0, 0, "Play", new IClickCallback()
@@ -108,14 +107,14 @@ public class MainMenuScreen extends AbstractScreen
 	{
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
 		backgroundImage.setScaling(Scaling.fill);
-		backgroundImage.setPosition(Gdx.graphics.getWidth()/2 - backgroundImage.getWidth()/2,
-				Gdx.graphics.getHeight()/2 - backgroundImage.getHeight()/2);
+		backgroundImage.setPosition(Gdx.graphics.getWidth() / 2 - backgroundImage.getWidth() / 2,
+				Gdx.graphics.getHeight() / 2 - backgroundImage.getHeight() / 2);
 		stage.addActor(backgroundImage);
 	}
 
 
 	private void setButtonPosition(MenuButton button, int position)
 	{
-		button.setPosition(stage.getWidth()/2 - button.getWidth()/2, ((BUTTON_COUNT - position) * stage.getHeight() / (BUTTON_COUNT + 1)) - button.getHeight()/2);
+		button.setPosition(stage.getWidth() / 2 - button.getWidth() / 2, ((BUTTON_COUNT - position) * stage.getHeight() / (BUTTON_COUNT + 1)) - button.getHeight() / 2);
 	}
 }

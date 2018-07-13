@@ -38,9 +38,9 @@ public class CoinController
 			public void run()
 			{
 				randomizeSpawnTime();
-				if(coin == null)
+				if (coin == null)
 				{
-					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50, soundService);
+					coin = new Coin((int) MathUtils.random(stage.getWidth() - 50), (int) stage.getHeight() + 50, soundService);
 					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200,
 							32f / ((game.getScoreService().getPoints() / 10) + 1)));
 					stage.addActor(coin);
@@ -58,14 +58,13 @@ public class CoinController
 
 	public void update(JuggleMasterGame game, ScoreLabel scoreLabel)
 	{
-		if((coin != null && ball.collides(coin)))
+		if ((coin != null && ball.collides(coin)))
 		{
 			coin.onCollision();
 			game.getScoreService().addPoints(5);
 			coin = null;
 			scoreLabel.setScore(game.getScoreService().getPoints());
-		}
-		else if(coin != null && coin.getY() < -50)
+		} else if (coin != null && coin.getY() < -50)
 		{
 			coin.remove();
 			coin = null;

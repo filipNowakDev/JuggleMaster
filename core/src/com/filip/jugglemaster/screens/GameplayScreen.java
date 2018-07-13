@@ -22,7 +22,7 @@ public class GameplayScreen extends AbstractScreen
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
 	private ScoreLabel recordLabel;
-	private Vector2 gravity = new Vector2(0, -6*Gdx.graphics.getWidth()/5);
+	private Vector2 gravity = new Vector2(0, -6 * Gdx.graphics.getWidth() / 5);
 	private CoinController coinController;
 
 	public GameplayScreen(JuggleMasterGame game)
@@ -50,7 +50,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initRecordLabel()
 	{
-		recordLabel = new ScoreLabel((int)stage.getWidth() - Gdx.graphics.getWidth()/3, (int)stage.getHeight() - 50, "Record: ");
+		recordLabel = new ScoreLabel((int) stage.getWidth() - Gdx.graphics.getWidth() / 3, (int) stage.getHeight() - 50, "Record: ");
 		recordLabel.setScore(game.getScoreService().getMaxPoints());
 		stage.addActor(recordLabel);
 	}
@@ -60,14 +60,14 @@ public class GameplayScreen extends AbstractScreen
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
 
 		backgroundImage.setScaling(Scaling.fill);
-		backgroundImage.setPosition(Gdx.graphics.getWidth()/2 - backgroundImage.getWidth()/2,
-				Gdx.graphics.getHeight()/2 - backgroundImage.getHeight()/2);
+		backgroundImage.setPosition(Gdx.graphics.getWidth() / 2 - backgroundImage.getWidth() / 2,
+				Gdx.graphics.getHeight() / 2 - backgroundImage.getHeight() / 2);
 		stage.addActor(backgroundImage);
 	}
 
 	private void initScoreLabel()
 	{
-		scoreLabel = new ScoreLabel(20, (int)stage.getHeight() - 50, "Score: ");
+		scoreLabel = new ScoreLabel(20, (int) stage.getHeight() - 50, "Score: ");
 		stage.addActor(scoreLabel);
 	}
 
@@ -111,7 +111,6 @@ public class GameplayScreen extends AbstractScreen
 	}
 
 
-
 	private void update()
 	{
 
@@ -119,7 +118,7 @@ public class GameplayScreen extends AbstractScreen
 		stage.act(Gdx.graphics.getDeltaTime());
 		ball.update(gravity);
 		coinController.update(game, scoreLabel);
-		if(ball.isOnTheFloor())
+		if (ball.isOnTheFloor())
 		{
 			game.getScoreService().resetPoints();
 			scoreLabel.setScore(game.getScoreService().getPoints());

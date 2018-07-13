@@ -26,7 +26,7 @@ public class SoundService
 
 	private void playSound(Sound sound, float volume)
 	{
-		if(volume < 1f)
+		if (volume < 1f)
 			sound.play(volume);
 		else
 			sound.play();

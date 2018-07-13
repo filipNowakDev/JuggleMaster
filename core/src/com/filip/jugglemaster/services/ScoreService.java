@@ -5,7 +5,7 @@ import com.badlogic.gdx.Preferences;
 public class ScoreService
 {
 
-	private static final String  RECORD = "com.filip.jugglemaster.prefs.record";
+	private static final String RECORD = "com.filip.jugglemaster.prefs.record";
 	private int points = 0;
 	private int maxPoints = 0;
 	private Preferences preferences;
@@ -37,7 +37,7 @@ public class ScoreService
 
 	private void updateMaxPoints()
 	{
-		if(points > maxPoints)
+		if (points > maxPoints)
 		{
 			maxPoints = points;
 			preferences.putInteger(RECORD, maxPoints);

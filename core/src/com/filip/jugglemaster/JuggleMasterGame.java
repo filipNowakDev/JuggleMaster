@@ -3,13 +3,7 @@ package com.filip.jugglemaster;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.filip.jugglemaster.assets.Assets;
-import com.filip.jugglemaster.screens.GameplayScreen;
 import com.filip.jugglemaster.screens.MainMenuScreen;
 import com.filip.jugglemaster.screens.SplashScreen;
 import com.filip.jugglemaster.services.ScoreService;
@@ -17,7 +11,7 @@ import com.filip.jugglemaster.services.SoundService;
 
 public class JuggleMasterGame extends Game
 {
-	private static final String  PREFS = "com.filip.jugglemaster.prefs";
+	private static final String PREFS = "com.filip.jugglemaster.prefs";
 	public static final String NAME = "Juggle Master";
 	public static int WIDTH = 1000;
 	public static int HEIGHT = 800;
@@ -63,9 +57,6 @@ public class JuggleMasterGame extends Game
 		this.setScreen(new SplashScreen(this));
 	}
 
-
-
-
 	@Override
 	public void dispose()
 	{
@@ -79,7 +70,6 @@ public class JuggleMasterGame extends Game
 		Assets.load();
 		Assets.manager.finishLoading();
 	}
-
 
 	//------------------------------------------------
 	public boolean isPaused()

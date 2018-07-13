@@ -11,10 +11,10 @@ import com.filip.jugglemaster.services.SoundService;
 
 public class Ball extends Image
 {
-	private static final int width = Gdx.graphics.getWidth()/5;
-	private static final int height = Gdx.graphics.getWidth()/5;
-	private static  int starting_x = 190;
-	private static  int starting_y = 0;
+	private static final int width = Gdx.graphics.getWidth() / 5;
+	private static final int height = Gdx.graphics.getWidth() / 5;
+	private static int starting_x = 190;
+	private static int starting_y = 0;
 	private Vector2 speed;
 	private float angleSpeed = 0;
 	private boolean onTheFloor;
@@ -34,7 +34,7 @@ public class Ball extends Image
 		this.setDebug(false);
 		this.setOrigin(width / 2, height / 2);
 		this.setSize(width, height);
-		starting_x = Gdx.graphics.getWidth()/2 - width/2;
+		starting_x = Gdx.graphics.getWidth() / 2 - width / 2;
 		this.setPosition(starting_x, starting_y);
 	}
 
@@ -46,10 +46,10 @@ public class Ball extends Image
 			public void run()
 			{
 				soundService.playKickSound(1);
-				Vector2 displacement = new Vector2(-(x - width/2 - getX()), -(y - (getY() + height/2)));
-				speed = displacement.scl(Gdx.graphics.getWidth() /(float)(5*width/8));
+				Vector2 displacement = new Vector2(-(x - width / 2 - getX()), -(y - (getY() + height / 2)));
+				speed = displacement.scl(Gdx.graphics.getWidth() / (float) (5 * width / 8));
 
-				angleSpeed -= displacement.x * Math.signum(displacement.y) / (width/130f);
+				angleSpeed -= displacement.x * Math.signum(displacement.y) / (width / 130f);
 				if (onTheFloor && displacement.y > 0)
 					onTheFloor = false;
 			}
@@ -59,10 +59,9 @@ public class Ball extends Image
 	}
 
 
-
 	public void update(final Vector2 gravity)
 	{
-		int xSlowdown = 20 * width/100;
+		int xSlowdown = 20 * width / 100;
 		int rotationSlowdown = 50;
 		updatePosition(gravity, xSlowdown);
 		updateRotation(rotationSlowdown);
@@ -75,14 +74,13 @@ public class Ball extends Image
 		if (this.getY() <= 0)
 		{
 			onTheFloor = true;
-			if(Math.abs(speed.y) > 40)
-					soundService.playKickSound(Math.abs(speed.y / 500f));
+			if (Math.abs(speed.y) > 40)
+				soundService.playKickSound(Math.abs(speed.y / 500f));
 			this.setY(0);
 			speed.y = -speed.y / 2.5f;
-			xSlowdown = 500 * width/100;
+			xSlowdown = 500 * width / 100;
 
-		}
-		else
+		} else
 			onTheFloor = false;
 
 		speed.x -= Math.signum(speed.x) * xSlowdown * Gdx.graphics.getDeltaTime();
@@ -108,14 +106,14 @@ public class Ball extends Image
 	{
 
 		if (getX() <= 0)
-			angleSpeed = speed.y/(width/140f);
+			angleSpeed = speed.y / (width / 140f);
 
 		else if ((getX() + width) >= Gdx.graphics.getWidth())
-			angleSpeed = -speed.y/(width/140f);
+			angleSpeed = -speed.y / (width / 140f);
 
-		if(this.getY() <= 0)
+		if (this.getY() <= 0)
 		{
-			angleSpeed = -speed.x/(width/140f) /*(((1 + e) * speed.x + alpha * (1 + e) * radius * angleSpeed) / ((1 + alpha) * radius))*//* * (360f / 6.28f)*/;
+			angleSpeed = -speed.x / (width / 140f) /*(((1 + e) * speed.x + alpha * (1 + e) * radius * angleSpeed) / ((1 + alpha) * radius))*//* * (360f / 6.28f)*/;
 		}
 
 		angleSpeed -= Math.signum(angleSpeed) * rotationSlowdown * Gdx.graphics.getDeltaTime();
@@ -135,8 +133,8 @@ public class Ball extends Image
 	{
 		float w = 0.5f * (this.getWidth() + coin.getSize());
 		float h = 0.5f * (this.getHeight() + coin.getSize());
-		float dx = this.getX() + this.getWidth()/2 - coin.getX() - coin.getSize()/2;
-		float dy = this.getY() + this.getHeight()/2 - coin.getY() - coin.getSize()/2;
+		float dx = this.getX() + this.getWidth() / 2 - coin.getX() - coin.getSize() / 2;
+		float dy = this.getY() + this.getHeight() / 2 - coin.getY() - coin.getSize() / 2;
 
 		if (Math.abs(dx) <= w && Math.abs(dy) <= h)
 		{
