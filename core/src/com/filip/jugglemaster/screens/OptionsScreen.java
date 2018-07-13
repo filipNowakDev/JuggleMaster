@@ -1,5 +1,17 @@
 package com.filip.jugglemaster.screens;
 
-public class OptionsScreen
+import com.filip.jugglemaster.JuggleMasterGame;
+
+public class OptionsScreen extends AbstractScreen
 {
+	public OptionsScreen(JuggleMasterGame game)
+	{
+		super(game);
+	}
+
+	@Override
+	protected void init()
+	{
+		//initOptionsService();
+	}
 }

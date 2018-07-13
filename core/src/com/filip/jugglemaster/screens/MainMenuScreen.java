@@ -3,28 +3,33 @@ package com.filip.jugglemaster.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Scaling;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IClickCallback;
 import com.filip.jugglemaster.ui.MenuButton;
 
-public class MainMenuScreen extends AbstractScreen
+public class MainMenuScreen extends AbstractMenuScreen
 {
 
-	private static final int BUTTON_COUNT = 4;
+	//private static final int BUTTON_COUNT = 5;
 
 	public MainMenuScreen(JuggleMasterGame game)
 	{
 		super(game);
+		initBackground();
+		initButtons();
 	}
 
 	@Override
 	protected void init()
 	{
-		initBackground();
-		initButtons();
+
 	}
 
 	@Override
@@ -42,10 +47,20 @@ public class MainMenuScreen extends AbstractScreen
 
 	private void initButtons()
 	{
+		initTitleLabel();
 		initPlayButton();
 		initStoreButton();
 		initOptionsButton();
 		initExitButton();
+	}
+
+	private void initTitleLabel()
+	{
+		Label.LabelStyle style = new Label.LabelStyle();
+		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
+		Label label = new Label("Juggle Master", style);
+		addToBottom(label);
+		stage.addActor(label);
 	}
 
 
@@ -59,7 +74,7 @@ public class MainMenuScreen extends AbstractScreen
 				game.setScreen(new GameplayScreen(game));
 			}
 		});
-		setButtonPosition(playButton, 0);
+		addToBottom(playButton);
 		stage.addActor(playButton);
 	}
 
@@ -72,7 +87,7 @@ public class MainMenuScreen extends AbstractScreen
 			{
 			}
 		});
-		setButtonPosition(storeButton, 1);
+		addToBottom(storeButton);
 		stage.addActor(storeButton);
 	}
 
@@ -85,7 +100,7 @@ public class MainMenuScreen extends AbstractScreen
 			{
 			}
 		});
-		setButtonPosition(optionsButton, 2);
+		addToBottom(optionsButton);
 		stage.addActor(optionsButton);
 	}
 
@@ -99,7 +114,7 @@ public class MainMenuScreen extends AbstractScreen
 				Gdx.app.exit();
 			}
 		});
-		setButtonPosition(exitButton, 3);
+		addToBottom(exitButton);
 		stage.addActor(exitButton);
 	}
 
@@ -112,9 +127,4 @@ public class MainMenuScreen extends AbstractScreen
 		stage.addActor(backgroundImage);
 	}
 
-
-	private void setButtonPosition(MenuButton button, int position)
-	{
-		button.setPosition(stage.getWidth() / 2 - button.getWidth() / 2, ((BUTTON_COUNT - position) * stage.getHeight() / (BUTTON_COUNT + 1)) - button.getHeight() / 2);
-	}
 }
