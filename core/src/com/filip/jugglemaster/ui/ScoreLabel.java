@@ -7,17 +7,17 @@ import com.filip.jugglemaster.assets.Assets;
 public class ScoreLabel extends Label
 {
 	String label;
-	public ScoreLabel(int x, String label)
+	public ScoreLabel(int x, int y, String label)
 	{
 		super("", prepareLabelStyle());
 		this.label = label;
-		init(x);
+		init(x, y);
 	}
 
-	private void init(int x)
+	private void init(int x, int y)
 	{
 		this.setX(x);
-		this.setY(750);
+		this.setY(y);
 	}
 
 	private static LabelStyle prepareLabelStyle()

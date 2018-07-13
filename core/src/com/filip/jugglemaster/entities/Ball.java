@@ -8,12 +8,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 
 public class Ball extends Image
 {
-	private static final int width = 100;
-	private static final int height = 100;
+	private static final int width = Gdx.graphics.getWidth()/5;
+	private static final int height = Gdx.graphics.getWidth()/5;
 	private static final int starting_x = 190;
 	private static final int starting_y = 0;
 	private Vector2 speed;
@@ -46,9 +47,12 @@ public class Ball extends Image
 			public void run()
 			{
 				kick.play();
-				Vector2 displacement = new Vector2(-(x - 50 - getX()), -(y - (getY() + 50)));
-				speed = displacement.scl(10);
-				angleSpeed -= displacement.x * Math.signum(displacement.y);
+				Vector2 displacement = new Vector2(-(x - width/2 - getX()), -(y - (getY() + height/2)));
+				speed = displacement.scl(Gdx.graphics.getWidth() /(float)(5*width/8));
+				System.out.println(displacement +  Integer.toString(5*width/8));
+
+
+				angleSpeed -= displacement.x * Math.signum(displacement.y) / (width/130f);
 				if (onTheFloor && displacement.y > 0)
 					onTheFloor = false;
 			}
@@ -61,7 +65,7 @@ public class Ball extends Image
 
 	public void update(final Vector2 gravity)
 	{
-		int xSlowdown = 20;
+		int xSlowdown = 20 * width/100;
 		int rotationSlowdown = 50;
 		updatePosition(gravity, xSlowdown);
 		updateRotation(rotationSlowdown);
@@ -74,7 +78,7 @@ public class Ball extends Image
 		if (this.getY() <= 0)
 		{
 			onTheFloor = true;
-			if(Math.abs(speed.y) > 12)
+			if(Math.abs(speed.y) > 50)
 			{	if(Math.abs(speed.y / 500f) < 1f)
 					kick.play(Math.abs(speed.y / 500f));
 				else
@@ -82,7 +86,7 @@ public class Ball extends Image
 			}
 			this.setY(0);
 			speed.y = -speed.y / 2.5f;
-			xSlowdown = 1000;
+			xSlowdown = 500 * width/100;
 
 		}
 
@@ -99,9 +103,9 @@ public class Ball extends Image
 			else
 				kick.play();
 			speed.x = -speed.x;
-		} else if ((getX() + 100) >= 481)
+		} else if ((getX() + width) >= Gdx.graphics.getWidth())
 		{
-			setX(380);
+			setX(Gdx.graphics.getWidth() - width);
 			if(Math.abs(speed.x / 500f) < 1f)
 				kick.play(Math.abs(speed.x / 500f));
 			else
@@ -112,14 +116,18 @@ public class Ball extends Image
 
 	private void updateRotation(int rotationSlowdown)
 	{
-		if (getX() <= 0)
-			angleSpeed = speed.y;
 
-		else if ((getX() + 100) >= 480)
-			angleSpeed = -speed.y;
+		if (getX() <= 0)
+			angleSpeed = speed.y/(width/140f);
+
+		else if ((getX() + width) >= Gdx.graphics.getWidth())
+			angleSpeed = -speed.y/(width/140f);
 
 		if(this.getY() <= 0)
-			angleSpeed = -speed.x;
+		{
+			angleSpeed = -speed.x/(width/140f) /*(((1 + e) * speed.x + alpha * (1 + e) * radius * angleSpeed) / ((1 + alpha) * radius))*//* * (360f / 6.28f)*/;
+			System.out.println(angleSpeed);
+		}
 
 		angleSpeed -= Math.signum(angleSpeed) * rotationSlowdown * Gdx.graphics.getDeltaTime();
 		if (Math.abs(angleSpeed) < 5)

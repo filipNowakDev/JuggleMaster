@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Scaling;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.controllers.CoinController;
@@ -22,7 +23,7 @@ public class GameplayScreen extends AbstractScreen
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
 	private ScoreLabel recordLabel;
-	private Vector2 gravity = new Vector2(0, -600);
+	private Vector2 gravity = new Vector2(0, -6*Gdx.graphics.getWidth()/5);
 	private CoinController coinController;
 
 	public GameplayScreen(JuggleMasterGame game)
@@ -51,7 +52,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initRecordLabel()
 	{
-		recordLabel = new ScoreLabel(320, "Record: ");
+		recordLabel = new ScoreLabel((int)stage.getWidth() - 160, (int)stage.getHeight() - 50, "Record: ");
 		recordLabel.setScore(game.getScoreService().getMaxPoints());
 		stage.addActor(recordLabel);
 	}
@@ -59,12 +60,13 @@ public class GameplayScreen extends AbstractScreen
 	private void initBackground()
 	{
 		backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
+			backgroundImage.setScale(Gdx.graphics.getHeight()/backgroundImage.getHeight());
 		stage.addActor(backgroundImage);
 	}
 
 	private void initScoreLabel()
 	{
-		scoreLabel = new ScoreLabel(20, "Score: ");
+		scoreLabel = new ScoreLabel(20, (int)stage.getHeight() - 50, "Score: ");
 		stage.addActor(scoreLabel);
 	}
 

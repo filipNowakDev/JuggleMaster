@@ -18,8 +18,8 @@ public class JuggleMasterGame extends Game
 {
 	private static final String  PREFS = "com.filip.jugglemaster.prefs";
 	public static final String NAME = "Juggle Master";
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+	public static int WIDTH = 1024;
+	public static int HEIGHT = 768;
 
 	private boolean paused = false;
 
@@ -49,6 +49,8 @@ public class JuggleMasterGame extends Game
 
 	private void init()
 	{
+		WIDTH = Gdx.graphics.getWidth();
+		HEIGHT = Gdx.graphics.getHeight();
 		preferences = Gdx.app.getPreferences(PREFS);
 		this.setScreen(new SplashScreen(this));
 	}

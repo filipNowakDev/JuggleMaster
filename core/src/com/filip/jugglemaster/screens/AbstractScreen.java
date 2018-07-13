@@ -22,7 +22,7 @@ public abstract class AbstractScreen implements Screen
 	{
 		this.game = game;
 		createCamera();
-		stage = new Stage(new StretchViewport(JuggleMasterGame.WIDTH, JuggleMasterGame.HEIGHT, camera));
+		stage = new Stage(new ScreenViewport(/*JuggleMasterGame.WIDTH, JuggleMasterGame.HEIGHT,*/ camera));
 		batch = new SpriteBatch();
 		Gdx.input.setInputProcessor(stage);
 		Gdx.input.setCatchBackKey(true);

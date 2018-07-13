@@ -20,10 +20,10 @@ public class BallButton extends Button
 
 	private void init(final IClickCallback callback)
 	{
-		setWidth(ball.getWidth() + 20);
-		setHeight(ball.getHeight() + 20);
-		setX(ball.getX() - 10);
-		setY(ball.getY() - 10);
+		setWidth(ball.getWidth() + ball.getWidth()/4);
+		setHeight(ball.getHeight() + ball.getHeight()/4);
+		setX(ball.getX() - ball.getWidth()/8);
+		setY(ball.getY() - ball.getHeight()/8);
 		setDebug(false);
 		this.addListener(new ClickListener(){
 			@Override
@@ -38,7 +38,7 @@ public class BallButton extends Button
 
 	public void updatePosition()
 	{
-		setX(ball.getX() - 10);
-		setY(ball.getY() - 10);
+		setX(ball.getX() - ball.getWidth()/8);
+		setY(ball.getY() - ball.getHeight()/8);
 	}
 }

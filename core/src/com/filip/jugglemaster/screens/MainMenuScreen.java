@@ -106,6 +106,8 @@ public class MainMenuScreen extends AbstractScreen
 	private void initBackground()
 	{
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
+			backgroundImage.setScale(Gdx.graphics.getHeight()/backgroundImage.getHeight());
+
 		stage.addActor(backgroundImage);
 	}
 
