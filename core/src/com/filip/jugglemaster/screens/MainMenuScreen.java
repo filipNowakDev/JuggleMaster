@@ -2,13 +2,8 @@ package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Scaling;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IClickCallback;
@@ -16,20 +11,10 @@ import com.filip.jugglemaster.ui.MenuButton;
 
 public class MainMenuScreen extends AbstractMenuScreen
 {
-
-	//private static final int BUTTON_COUNT = 5;
-
 	public MainMenuScreen(JuggleMasterGame game)
 	{
 		super(game);
-		initBackground();
-		initButtons();
-	}
-
-	@Override
-	protected void init()
-	{
-
+		initItems();
 	}
 
 	@Override
@@ -45,11 +30,11 @@ public class MainMenuScreen extends AbstractMenuScreen
 			Gdx.app.exit();
 	}
 
-	private void initButtons()
+	private void initItems()
 	{
 		initTitleLabel();
 		initPlayButton();
-		initStoreButton();
+		//initStoreButton();
 		initOptionsButton();
 		initExitButton();
 	}
@@ -98,6 +83,7 @@ public class MainMenuScreen extends AbstractMenuScreen
 			@Override
 			public void onClick()
 			{
+				game.setScreen(new OptionsScreen(game));
 			}
 		});
 		addToBottom(optionsButton);
@@ -116,15 +102,6 @@ public class MainMenuScreen extends AbstractMenuScreen
 		});
 		addToBottom(exitButton);
 		stage.addActor(exitButton);
-	}
-
-	private void initBackground()
-	{
-		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
-		backgroundImage.setScaling(Scaling.fill);
-		backgroundImage.setPosition(Gdx.graphics.getWidth() / 2 - backgroundImage.getWidth() / 2,
-				Gdx.graphics.getHeight() / 2 - backgroundImage.getHeight() / 2);
-		stage.addActor(backgroundImage);
 	}
 
 }

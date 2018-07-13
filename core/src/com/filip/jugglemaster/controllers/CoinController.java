@@ -1,5 +1,6 @@
 package com.filip.jugglemaster.controllers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -40,7 +41,8 @@ public class CoinController
 				randomizeSpawnTime();
 				if (coin == null)
 				{
-					coin = new Coin((int) MathUtils.random(stage.getWidth() - 50), (int) stage.getHeight() + 50, soundService);
+					coin = new Coin((int) MathUtils.random(stage.getWidth() - Gdx.graphics.getWidth() / 13),
+							(int) stage.getHeight() + Gdx.graphics.getWidth() / 13, soundService);
 					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200,
 							32f / ((game.getScoreService().getPoints() / 10) + 1)));
 					stage.addActor(coin);

@@ -21,6 +21,7 @@ public class Assets
 	public static String background = "images/footballpitchscaled.jpg";
 	public static String coin = "images/coin-sheet-scaled.png";
 	public static String buttonAtlas = "images/buttons_pack.atlas";
+	public static String uiAtlas = "skin/flat-earth-ui.atlas";
 
 	//------SOUNDS--------
 	public static String kick = "sound/smackSound.mp3";
@@ -69,6 +70,8 @@ public class Assets
 		manager.load(background, Texture.class);
 		manager.load(coin, Texture.class);
 		manager.load(buttonAtlas, TextureAtlas.class);
+		manager.load(uiAtlas, TextureAtlas.class);
+
 	}
 
 	public static void dispose()
