@@ -19,7 +19,6 @@ import com.filip.jugglemaster.ui.ScoreLabel;
 public class GameplayScreen extends AbstractScreen
 {
 	private Ball ball;
-	private Image backgroundImage;
 	private BallButton ballButton;
 	private ScoreLabel scoreLabel;
 	private ScoreLabel recordLabel;
@@ -37,10 +36,9 @@ public class GameplayScreen extends AbstractScreen
 		initBackground();
 		initBall();
 		initBallButton();
+		initCoinController(stage, ball);
 		initScoreLabel();
 		initRecordLabel();
-
-		initCoinController(stage, ball);
 	}
 
 	private void initCoinController(Stage stage, Ball ball)
@@ -52,15 +50,18 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initRecordLabel()
 	{
-		recordLabel = new ScoreLabel((int)stage.getWidth() - 160, (int)stage.getHeight() - 50, "Record: ");
+		recordLabel = new ScoreLabel((int)stage.getWidth() - Gdx.graphics.getWidth()/3, (int)stage.getHeight() - 50, "Record: ");
 		recordLabel.setScore(game.getScoreService().getMaxPoints());
 		stage.addActor(recordLabel);
 	}
 
 	private void initBackground()
 	{
-		backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
-			backgroundImage.setScale(Gdx.graphics.getHeight()/backgroundImage.getHeight());
+		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
+
+		backgroundImage.setScaling(Scaling.fill);
+		backgroundImage.setPosition(Gdx.graphics.getWidth()/2 - backgroundImage.getWidth()/2,
+				Gdx.graphics.getHeight()/2 - backgroundImage.getHeight()/2);
 		stage.addActor(backgroundImage);
 	}
 

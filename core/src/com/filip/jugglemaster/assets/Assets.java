@@ -1,5 +1,6 @@
 package com.filip.jugglemaster.assets;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.SkinLoader;
@@ -53,7 +54,7 @@ public class Assets
 
 		FreetypeFontLoader.FreeTypeFontLoaderParameter _labelFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 		_labelFont.fontFileName = labelFont;
-		_labelFont.fontParameters.size = 20;
+		_labelFont.fontParameters.size = Gdx.graphics.getWidth()/20;
 		manager.load(labelFont, BitmapFont.class, _labelFont);
 	}
 

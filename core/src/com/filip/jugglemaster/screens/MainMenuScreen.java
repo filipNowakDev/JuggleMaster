@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Scaling;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IClickCallback;
@@ -106,8 +107,9 @@ public class MainMenuScreen extends AbstractScreen
 	private void initBackground()
 	{
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
-			backgroundImage.setScale(Gdx.graphics.getHeight()/backgroundImage.getHeight());
-
+		backgroundImage.setScaling(Scaling.fill);
+		backgroundImage.setPosition(Gdx.graphics.getWidth()/2 - backgroundImage.getWidth()/2,
+				Gdx.graphics.getHeight()/2 - backgroundImage.getHeight()/2);
 		stage.addActor(backgroundImage);
 	}
 

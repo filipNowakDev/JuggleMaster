@@ -39,7 +39,7 @@ public class CoinController
 				{
 					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50);
 					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200,
-							32f / ((game.getScoreService().getPoints() / 5) + 1)));
+							32f / ((game.getScoreService().getPoints() / 10) + 1)));
 					stage.addActor(coin);
 				}
 			}

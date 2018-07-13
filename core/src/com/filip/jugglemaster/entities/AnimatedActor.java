@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.filip.jugglemaster.assets.Assets;
@@ -11,14 +12,16 @@ import com.filip.jugglemaster.assets.Assets;
 public class AnimatedActor extends Actor
 {
 
+	private final int size;
 	private Animation<TextureRegion> animation;
 	private Texture animationSheet;
 	private float stateTime;
 
 
 	//asset specified by 'path' must be loaded in Assets first
-	public AnimatedActor(String path, int cols, int rows)
+	public AnimatedActor(String path, int cols, int rows, int size)
 	{
+		this.size = size;
 		stateTime = 0;
 		initAnimationSheet(path);
 		initAnimation(cols, rows);
@@ -68,6 +71,15 @@ public class AnimatedActor extends Actor
 	public void draw(Batch batch, float parentAlpha)
 	{
 		TextureRegion currentFrame = animation.getKeyFrame(stateTime, true);
-		batch.draw(currentFrame, getX(), getY());
+		batch.draw(currentFrame, getX(), getY(), size, size);
+	}
+
+
+	//---------------------
+
+
+	public int getSize()
+	{
+		return size;
 	}
 }

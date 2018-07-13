@@ -10,7 +10,7 @@ public class Coin extends AnimatedActor
 	private Sound ding;
 	public Coin(int x, int y)
 	{
-		super(Assets.coin, 14, 1);
+		super(Assets.coin, 14, 1, Gdx.graphics.getWidth()/13);
 		ding = Assets.manager.get(Assets.ding, Sound.class);
 		setX(x);
 		setY(y);

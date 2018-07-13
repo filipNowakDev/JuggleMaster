@@ -15,8 +15,8 @@ public class Ball extends Image
 {
 	private static final int width = Gdx.graphics.getWidth()/5;
 	private static final int height = Gdx.graphics.getWidth()/5;
-	private static final int starting_x = 190;
-	private static final int starting_y = 0;
+	private static  int starting_x = 190;
+	private static  int starting_y = 0;
 	private Vector2 speed;
 	private float angleSpeed = 0;
 	private boolean onTheFloor;
@@ -36,6 +36,7 @@ public class Ball extends Image
 		this.setDebug(false);
 		this.setOrigin(width / 2, height / 2);
 		this.setSize(width, height);
+		starting_x = Gdx.graphics.getWidth()/2 - width/2;
 		this.setPosition(starting_x, starting_y);
 	}
 
@@ -78,7 +79,7 @@ public class Ball extends Image
 		if (this.getY() <= 0)
 		{
 			onTheFloor = true;
-			if(Math.abs(speed.y) > 50)
+			if(Math.abs(speed.y) > 40)
 			{	if(Math.abs(speed.y / 500f) < 1f)
 					kick.play(Math.abs(speed.y / 500f));
 				else
@@ -89,10 +90,13 @@ public class Ball extends Image
 			xSlowdown = 500 * width/100;
 
 		}
+		else
+			onTheFloor = false;
 
 		speed.x -= Math.signum(speed.x) * xSlowdown * Gdx.graphics.getDeltaTime();
 		if (Math.abs(speed.x) < 10)
 			speed.x = 0;
+
 		speed.add(0, gravity.y * Gdx.graphics.getDeltaTime());
 
 		if (getX() <= -1)
@@ -144,10 +148,10 @@ public class Ball extends Image
 
 	public boolean collides(Coin coin)
 	{
-		float w = 0.5f * (this.getWidth() + coin.getWidth());
-		float h = 0.5f * (this.getHeight() + coin.getHeight());
-		float dx = this.getX() + this.getWidth()/2 - coin.getX() - coin.getWidth()/2;
-		float dy = this.getY() + this.getHeight()/2 - coin.getY() - coin.getHeight()/2;
+		float w = 0.5f * (this.getWidth() + coin.getSize());
+		float h = 0.5f * (this.getHeight() + coin.getSize());
+		float dx = this.getX() + this.getWidth()/2 - coin.getX() - coin.getSize()/2;
+		float dy = this.getY() + this.getHeight()/2 - coin.getY() - coin.getSize()/2;
 
 		if (Math.abs(dx) <= w && Math.abs(dy) <= h)
 		{
