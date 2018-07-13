@@ -92,7 +92,7 @@ public class GameplayScreen extends AbstractScreen
 
 	private void initBall()
 	{
-		ball = new Ball();
+		ball = new Ball(game.getSoundService());
 		stage.addActor(ball);
 	}
 

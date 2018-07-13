@@ -3,15 +3,16 @@ package com.filip.jugglemaster.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.filip.jugglemaster.assets.Assets;
+import com.filip.jugglemaster.services.SoundService;
 
 public class Coin extends AnimatedActor
 {
 
-	private Sound ding;
-	public Coin(int x, int y)
+	private SoundService soundService;
+	public Coin(int x, int y, SoundService soundService)
 	{
 		super(Assets.coin, 14, 1, Gdx.graphics.getWidth()/13);
-		ding = Assets.manager.get(Assets.ding, Sound.class);
+		this.soundService = soundService;
 		setX(x);
 		setY(y);
 		setOrigin(getWidth()/2, getHeight()/2);
@@ -19,7 +20,7 @@ public class Coin extends AnimatedActor
 
 	public void onCollision()
 	{
-		ding.play();
+		soundService.playCoinSound(1);
 		Coin.this.remove();
 	}
 }

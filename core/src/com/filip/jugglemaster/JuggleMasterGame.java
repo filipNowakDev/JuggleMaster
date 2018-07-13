@@ -13,6 +13,7 @@ import com.filip.jugglemaster.screens.GameplayScreen;
 import com.filip.jugglemaster.screens.MainMenuScreen;
 import com.filip.jugglemaster.screens.SplashScreen;
 import com.filip.jugglemaster.services.ScoreService;
+import com.filip.jugglemaster.services.SoundService;
 
 public class JuggleMasterGame extends Game
 {
@@ -25,6 +26,7 @@ public class JuggleMasterGame extends Game
 
 	private Preferences preferences;
 	private ScoreService scoreService;
+	private SoundService soundService;
 
 	@Override
 	public void create()
@@ -32,7 +34,13 @@ public class JuggleMasterGame extends Game
 		init();
 		initScoreService();
 		initAssets();
+		initSoundService();
 		this.setScreen(new MainMenuScreen(this));
+	}
+
+	private void initSoundService()
+	{
+		soundService = new SoundService();
 	}
 
 	private void initScoreService()
@@ -87,5 +95,10 @@ public class JuggleMasterGame extends Game
 	public ScoreService getScoreService()
 	{
 		return scoreService;
+	}
+
+	public SoundService getSoundService()
+	{
+		return soundService;
 	}
 }

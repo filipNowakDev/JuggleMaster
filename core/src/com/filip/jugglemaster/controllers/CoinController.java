@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.entities.Ball;
 import com.filip.jugglemaster.entities.Coin;
+import com.filip.jugglemaster.services.SoundService;
 import com.filip.jugglemaster.ui.ScoreLabel;
 
 public class CoinController
@@ -16,6 +17,7 @@ public class CoinController
 	private Ball ball;
 	private int spawnTime;
 	private Coin coin;
+	private SoundService soundService;
 
 	public CoinController(Stage stage, Ball ball, JuggleMasterGame game)
 	{
@@ -28,6 +30,7 @@ public class CoinController
 		randomizeSpawnTime();
 		this.stage = _stage;
 		this.ball = ball;
+		this.soundService = game.getSoundService();
 		Timer.schedule(new Timer.Task()
 		{
 
@@ -37,7 +40,7 @@ public class CoinController
 				randomizeSpawnTime();
 				if(coin == null)
 				{
-					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50);
+					coin = new Coin((int)MathUtils.random(stage.getWidth() - 50), (int)stage.getHeight() + 50, soundService);
 					coin.addAction(Actions.moveBy(0, -stage.getHeight() - 200,
 							32f / ((game.getScoreService().getPoints() / 10) + 1)));
 					stage.addActor(coin);
