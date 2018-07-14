@@ -36,7 +36,7 @@ public class MenuButton extends TextButton
 
 	private static TextButtonStyle prepareButtonStyle()
 	{
-		TextureAtlas buttonAtlas;
+		/*TextureAtlas buttonAtlas;
 		Skin buttonSkin;
 		BitmapFont font;
 
@@ -51,6 +51,11 @@ public class MenuButton extends TextButton
 		style.down = buttonSkin.getDrawable("button_pressed");
 		style.font = font;
 
-		return style;
+		return style;*/
+		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
+		TextButtonStyle buttonStyle = skin.get("default", TextButtonStyle.class);
+		buttonStyle.font = Assets.manager.get(Assets.font, BitmapFont.class);
+		return buttonStyle;
 	}
+
 }

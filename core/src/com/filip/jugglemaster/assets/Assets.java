@@ -11,25 +11,27 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets
 {
 	public static AssetManager manager;
 
 	//------TEXTURES------
-	public static String ball = "images/SoccerBall.png";
-	public static String background = "images/footballpitchscaled.jpg";
-	public static String coin = "images/coin-sheet-scaled.png";
-	public static String buttonAtlas = "images/buttons_pack.atlas";
-	public static String uiAtlas = "skin/flat-earth-ui.atlas";
+	public static final String ball = "images/SoccerBall.png";
+	public static final String background = "images/footballpitchscaled.jpg";
+	public static final String coin = "images/coin-sheet-scaled.png";
+	public static final String uiAtlas = "skin/flat-earth-ui.atlas";
+
+	public static final String uiSkin = "skin/flat-earth-ui.json";
 
 	//------SOUNDS--------
-	public static String kick = "sound/smackSound.mp3";
-	public static String ding = "sound/ding.mp3";
+	public static final String kick = "sound/smackSound.mp3";
+	public static final String ding = "sound/ding.mp3";
 
 	//------FONTS---------
-	public static String font = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf";
-	public static String labelFont = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf";
+	public static final String font = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf";
+	public static final String labelFont = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf";
 
 	//--------------------
 
@@ -49,7 +51,7 @@ public class Assets
 
 		FreetypeFontLoader.FreeTypeFontLoaderParameter mainFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 		mainFont.fontFileName = font;
-		mainFont.fontParameters.size = 30;
+		mainFont.fontParameters.size = Gdx.graphics.getHeight() / 20;
 		manager.load(font, BitmapFont.class, mainFont);
 
 		FreetypeFontLoader.FreeTypeFontLoaderParameter _labelFont = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
@@ -69,8 +71,8 @@ public class Assets
 		manager.load(ball, Texture.class);
 		manager.load(background, Texture.class);
 		manager.load(coin, Texture.class);
-		manager.load(buttonAtlas, TextureAtlas.class);
 		manager.load(uiAtlas, TextureAtlas.class);
+		manager.load(uiSkin, Skin.class);
 
 	}
 

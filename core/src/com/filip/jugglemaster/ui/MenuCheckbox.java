@@ -25,7 +25,7 @@ public class MenuCheckbox extends CheckBox
 
 	private static CheckBoxStyle prepareCheckBoxStyle()
 	{
-		TextureAtlas skinAtlas;
+		/*TextureAtlas skinAtlas;
 		Skin skin;
 		BitmapFont font;
 
@@ -40,6 +40,11 @@ public class MenuCheckbox extends CheckBox
 		style.checkboxOn = skin.getDrawable("checkbox-pressed");
 		style.font = font;
 
+		return style;*/
+
+		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
+		CheckBoxStyle style = skin.get("default", CheckBoxStyle.class);
+		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
 		return style;
 	}
 }

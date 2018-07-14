@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IClickCallback;
@@ -41,9 +44,12 @@ public class MainMenuScreen extends AbstractMenuScreen
 
 	private void initTitleLabel()
 	{
-		Label.LabelStyle style = new Label.LabelStyle();
+		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
+
+		Label.LabelStyle style = /*new Label.LabelStyle();*/skin.get("title", Label.LabelStyle.class);
 		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
 		Label label = new Label("Juggle Master", style);
+		label.setAlignment(Align.center);
 		addToBottom(label);
 		stage.addActor(label);
 	}

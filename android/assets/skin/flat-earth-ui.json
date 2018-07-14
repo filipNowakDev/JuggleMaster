@@ -18,10 +18,7 @@ com.badlogic.gdx.graphics.Color: {
 		a: 1
 	}
 	color: {
-		r: 0.3372549
-		g: 0.8
-		b: 0.44705883
-		a: 1
+		a: 1.0, b: 1.0, g: 0.43529412, r: 0.20784314
 	}
 	gray: {
 		r: 0.5
@@ -30,16 +27,10 @@ com.badlogic.gdx.graphics.Color: {
 		a: 1
 	}
 	highlight: {
-		r: 0.42156863
-		g: 1
-		b: 0.5552286
-		a: 1
+		a: 1.0, b: 1.0, g: 0.7294118, r: 0.23921569
 	}
 	pressed: {
-		r: 0.2529412
-		g: 0.6
-		b: 0.33313715
-		a: 1
+		a: 1.0, b: 0.6, g: 0.2784314, r: 0.20392157
 	}
 	selection: {
 		r: 0.22745098

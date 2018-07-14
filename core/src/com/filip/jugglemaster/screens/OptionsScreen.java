@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Align;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IChangeCallback;
@@ -57,9 +59,13 @@ public class OptionsScreen extends AbstractMenuScreen
 
 	private void initTitle()
 	{
-		Label.LabelStyle style = new Label.LabelStyle();
+		/*Label.LabelStyle style = new Label.LabelStyle();
+		style.font = Assets.manager.get(Assets.font, BitmapFont.class);*/
+		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
+		Label.LabelStyle style = /*new Label.LabelStyle();*/skin.get("title", Label.LabelStyle.class);
 		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
 		Label label = new Label("Options", style);
+		label.setAlignment(Align.center);
 		addToBottom(label);
 		stage.addActor(label);
 	}

@@ -13,7 +13,18 @@ public class OptionsService
 	public OptionsService(Preferences preferences)
 	{
 		this.preferences = preferences;
+		initOptions();
 		loadOptions();
+	}
+
+	private void initOptions()
+	{
+		if(!preferences.contains(SOUND))
+		{
+			preferences.putBoolean(SOUND, true);
+			preferences.flush();
+
+		}
 	}
 
 	private void loadOptions()

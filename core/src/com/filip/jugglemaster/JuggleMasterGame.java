@@ -14,7 +14,7 @@ public class JuggleMasterGame extends Game
 {
 	private static final String PREFS = "com.filip.jugglemaster.prefs";
 	public static final String NAME = "Juggle Master";
-	public static int WIDTH = 1000;
+	public static int WIDTH = 480;
 	public static int HEIGHT = 800;
 
 	private boolean paused = false;
