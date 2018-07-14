@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -29,9 +30,14 @@ public class Assets
 	public static final String kick = "sound/smackSound.mp3";
 	public static final String ding = "sound/ding.mp3";
 
+	//------MUSIC---------
+
+	public static final String music = "music/Computer_Music_All-stars_-_May_the_Chords_Be_with_You.mp3";
+
 	//------FONTS---------
 	public static final String font = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf";
 	public static final String labelFont = "fonts/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf";
+
 
 	//--------------------
 
@@ -40,7 +46,13 @@ public class Assets
 		manager = new AssetManager();
 		loadTextures();
 		loadSounds();
+		loadMusic();
 		loadFonts();
+	}
+
+	private static void loadMusic()
+	{
+		manager.load(music, Music.class);
 	}
 
 	private static void loadFonts()
@@ -64,6 +76,7 @@ public class Assets
 	{
 		manager.load(kick, Sound.class);
 		manager.load(ding, Sound.class);
+
 	}
 
 	private static void loadTextures()

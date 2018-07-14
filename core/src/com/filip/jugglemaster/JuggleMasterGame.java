@@ -43,6 +43,7 @@ public class JuggleMasterGame extends Game
 	private void initSoundService()
 	{
 		soundService = new SoundService(optionsService);
+		soundService.playMusic();
 	}
 
 	private void initScoreService()
