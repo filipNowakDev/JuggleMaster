@@ -19,7 +19,7 @@ public class Assets
 	public static AssetManager manager;
 
 	//------TEXTURES------
-	public static final String ball = "images/SoccerBall.png";
+	public static final String ball = "images/balls/SoccerBall.png";
 	public static final String background = "images/footballpitchscaled.jpg";
 	public static final String coin = "images/coin-sheet-scaled.png";
 	public static final String uiAtlas = "skin/flat-earth-ui.atlas";

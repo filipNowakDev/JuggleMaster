@@ -5,9 +5,12 @@ import com.badlogic.gdx.Preferences;
 
 public class OptionsService
 {
-	private static final String SOUND = "com.filip.jugglemaster.prefs.sound";
 	private Preferences preferences;
+	private static final String SOUND = "com.filip.jugglemaster.prefs.sound";
+	private static final String MUSIC = "com.filip.jugglemaster.prefs.music";
+
 	private boolean soundEnabled;
+	private boolean musicEnabled;
 
 
 	public OptionsService(Preferences preferences)
@@ -25,11 +28,19 @@ public class OptionsService
 			preferences.flush();
 
 		}
+
+		if(!preferences.contains(MUSIC))
+		{
+			preferences.putBoolean(MUSIC, true);
+			preferences.flush();
+
+		}
 	}
 
 	private void loadOptions()
 	{
 		this.soundEnabled = preferences.getBoolean(SOUND);
+		this.musicEnabled = preferences.getBoolean(MUSIC);
 	}
 
 	public boolean isSoundEnabled()
@@ -42,5 +53,17 @@ public class OptionsService
 		preferences.putBoolean(SOUND, soundEnabled);
 		preferences.flush();
 		this.soundEnabled = soundEnabled;
+	}
+
+	public boolean isMusicEnabled()
+	{
+		return musicEnabled;
+	}
+
+	public void setMusicEnabled(boolean musicEnabled)
+	{
+		preferences.putBoolean(MUSIC, musicEnabled);
+		preferences.flush();
+		this.musicEnabled = musicEnabled;
 	}
 }

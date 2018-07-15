@@ -50,7 +50,8 @@ public abstract class AbstractMenuScreen extends AbstractScreen
 	private void initBackground()
 	{
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
-		backgroundImage.setScaling(Scaling.fill);
+		float width = (Gdx.graphics.getHeight()/backgroundImage.getHeight()) * backgroundImage.getWidth();
+		backgroundImage.setSize(width,Gdx.graphics.getHeight());
 		backgroundImage.setPosition(Gdx.graphics.getWidth() / 2 - backgroundImage.getWidth() / 2,
 				Gdx.graphics.getHeight() / 2 - backgroundImage.getHeight() / 2);
 		stage.addActor(backgroundImage);

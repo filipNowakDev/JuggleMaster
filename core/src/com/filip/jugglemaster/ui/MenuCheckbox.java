@@ -15,6 +15,9 @@ public class MenuCheckbox extends CheckBox
 	{
 		super(label, prepareCheckBoxStyle());
 		this.setPosition(x, y);
+		/*this.getImageCell().minSize(Gdx.graphics.getHeight()/10, Gdx.graphics.getHeight()/10);*/
+		/*this.getCells().get(0).size(Gdx.graphics.getHeight()/10, Gdx.graphics.getHeight()/10);*/
+
 		this.addListener(new ChangeListener() {
 			@Override
 			public void changed (ChangeEvent event, Actor actor) {
@@ -25,26 +28,16 @@ public class MenuCheckbox extends CheckBox
 
 	private static CheckBoxStyle prepareCheckBoxStyle()
 	{
-		/*TextureAtlas skinAtlas;
-		Skin skin;
-		BitmapFont font;
 
-		skinAtlas = Assets.manager.get(Assets.uiAtlas, TextureAtlas.class);
-		skin = new Skin();
-		skin.addRegions(skinAtlas);
-		font = Assets.manager.get(Assets.font, BitmapFont.class);
-
-		CheckBoxStyle style = new CheckBoxStyle();
-
-		style.checkboxOff = skin.getDrawable("checkbox");
-		style.checkboxOn = skin.getDrawable("checkbox-pressed");
-		style.font = font;
-
-		return style;*/
-
+		float h  = Gdx.graphics.getHeight()/25;
+		float w = h * 1.25f;
 		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
 		CheckBoxStyle style = skin.get("default", CheckBoxStyle.class);
 		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
+		style.checkboxOn.setMinHeight(h);
+		style.checkboxOn.setMinWidth(w);
+		style.checkboxOff.setMinHeight(h);
+		style.checkboxOff.setMinWidth(w);
 		return style;
 	}
 }

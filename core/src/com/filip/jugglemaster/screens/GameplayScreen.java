@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Scaling;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.controllers.CoinController;
@@ -58,8 +57,8 @@ public class GameplayScreen extends AbstractScreen
 	private void initBackground()
 	{
 		Image backgroundImage = new Image(Assets.manager.get(Assets.background, Texture.class));
-
-		backgroundImage.setScaling(Scaling.fill);
+		float width = (Gdx.graphics.getHeight()/backgroundImage.getHeight()) * backgroundImage.getWidth();
+		backgroundImage.setSize(width,Gdx.graphics.getHeight());
 		backgroundImage.setPosition(Gdx.graphics.getWidth() / 2 - backgroundImage.getWidth() / 2,
 				Gdx.graphics.getHeight() / 2 - backgroundImage.getHeight() / 2);
 		stage.addActor(backgroundImage);

@@ -3,7 +3,6 @@ package com.filip.jugglemaster.services;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.filip.jugglemaster.assets.Assets;
-import com.filip.jugglemaster.screens.OptionsScreen;
 
 public class SoundService
 {
@@ -32,10 +31,13 @@ public class SoundService
 
 	public void playMusic()
 	{
-		music.setLooping(true);
-		music.setVolume(0.6f);
-		music.play();
-		music.setLooping(true);
+		if(optionsService.isMusicEnabled())
+		{
+			music.setLooping(true);
+			music.setVolume(0.5f);
+			music.play();
+			music.setLooping(true);
+		}
 	}
 
 	public void stopMusic()

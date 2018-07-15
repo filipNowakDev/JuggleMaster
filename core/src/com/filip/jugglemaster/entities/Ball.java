@@ -78,13 +78,13 @@ public class Ball extends Image
 				soundService.playKickSound(Math.abs(speed.y / 500f));
 			this.setY(0);
 			speed.y = -speed.y / 2.5f;
-			xSlowdown = 500 * width / 100;
+			xSlowdown = 400 * width / 100;
 
 		} else
 			onTheFloor = false;
 
 		speed.x -= Math.signum(speed.x) * xSlowdown * Gdx.graphics.getDeltaTime();
-		if (Math.abs(speed.x) < 10)
+		if (Math.abs(speed.x) < 8f)
 			speed.x = 0;
 
 		speed.add(0, gravity.y * Gdx.graphics.getDeltaTime());
@@ -105,19 +105,21 @@ public class Ball extends Image
 	private void updateRotation(int rotationSlowdown)
 	{
 
+
+		float rotationCoefficient = 150f;
 		if (getX() <= 0)
-			angleSpeed = speed.y / (width / 140f);
+			angleSpeed = speed.y / (width / rotationCoefficient);
 
 		else if ((getX() + width) >= Gdx.graphics.getWidth())
-			angleSpeed = -speed.y / (width / 140f);
+			angleSpeed = -speed.y / (width / rotationCoefficient);
 
 		if (this.getY() <= 0)
 		{
-			angleSpeed = -speed.x / (width / 140f) /*(((1 + e) * speed.x + alpha * (1 + e) * radius * angleSpeed) / ((1 + alpha) * radius))*//* * (360f / 6.28f)*/;
+			angleSpeed = -speed.x / (width / rotationCoefficient) /*(((1 + e) * speed.x + alpha * (1 + e) * radius * angleSpeed) / ((1 + alpha) * radius))*//* * (360f / 6.28f)*/;
 		}
 
 		angleSpeed -= Math.signum(angleSpeed) * rotationSlowdown * Gdx.graphics.getDeltaTime();
-		if (Math.abs(angleSpeed) < 5)
+		if (Math.abs(angleSpeed) < width/100)
 			angleSpeed = 0;
 		this.rotateBy(angleSpeed * Gdx.graphics.getDeltaTime());
 	}

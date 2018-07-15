@@ -25,6 +25,7 @@ public class OptionsScreen extends AbstractMenuScreen
 	{
 		initTitle();
 		initSoundCheckbox();
+		initMusicCheckbox();
 		initBackButton();
 	}
 
@@ -57,12 +58,29 @@ public class OptionsScreen extends AbstractMenuScreen
 		stage.addActor(soundCheckBox);
 	}
 
+	private void initMusicCheckbox()
+	{
+		final MenuCheckbox musicCheckBox = new MenuCheckbox(0, 0, "Music", new IChangeCallback()
+		{
+			@Override
+			public void onChange(boolean state)
+			{
+				OptionsScreen.this.game.getOptionsService().setMusicEnabled(state);
+				if(!state)
+					game.getSoundService().stopMusic();
+				else
+					game.getSoundService().playMusic();
+			}
+		});
+		musicCheckBox.setChecked(game.getOptionsService().isMusicEnabled());
+		addToBottom(musicCheckBox);
+		stage.addActor(musicCheckBox);
+	}
+
 	private void initTitle()
 	{
-		/*Label.LabelStyle style = new Label.LabelStyle();
-		style.font = Assets.manager.get(Assets.font, BitmapFont.class);*/
 		Skin skin = (Assets.manager.get(Assets.uiSkin, Skin.class));
-		Label.LabelStyle style = /*new Label.LabelStyle();*/skin.get("title", Label.LabelStyle.class);
+		Label.LabelStyle style = skin.get("title", Label.LabelStyle.class);
 		style.font = Assets.manager.get(Assets.font, BitmapFont.class);
 		Label label = new Label("Options", style);
 		label.setAlignment(Align.center);
