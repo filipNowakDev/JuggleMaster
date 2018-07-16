@@ -2,17 +2,23 @@ package com.filip.jugglemaster.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.filip.jugglemaster.JuggleMasterGame;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.ui.IClickCallback;
+import com.filip.jugglemaster.ui.ItemSlider;
 import com.filip.jugglemaster.ui.MenuButton;
 
 public class StoreScreen extends AbstractMenuScreen
 {
+
+	ItemSlider slider;
+
 	public StoreScreen(JuggleMasterGame game)
 	{
 		super(game);
@@ -22,7 +28,17 @@ public class StoreScreen extends AbstractMenuScreen
 	private void initItems()
 	{
 		initTitle();
+		initSlider();
 		initBackButton();
+	}
+
+	private void initSlider()
+	{
+		slider = new ItemSlider(Gdx.graphics.getHeight()/4f);
+		addToBottom(slider, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/4f);
+		slider.addItem(new Image(Assets.manager.get(Assets.ball, Texture.class)));
+		slider.addItem(new Image(Assets.manager.get(Assets.rainbowBall, Texture.class)));
+		stage.addActor(slider);
 	}
 
 	private void initBackButton()
