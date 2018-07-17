@@ -36,8 +36,8 @@ public class StoreScreen extends AbstractMenuScreen
 	{
 		slider = new ItemSlider(Gdx.graphics.getHeight()/4f);
 		addToBottom(slider, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/4f);
-		slider.addItem(new Image(Assets.manager.get(Assets.ball, Texture.class)));
-		slider.addItem(new Image(Assets.manager.get(Assets.rainbowBall, Texture.class)));
+		slider.addItem(Assets.ball);
+		slider.addItem(Assets.rainbowBall);
 		stage.addActor(slider);
 	}
 
@@ -49,6 +49,7 @@ public class StoreScreen extends AbstractMenuScreen
 			public void onClick()
 			{
 				game.setScreen(new MainMenuScreen(game));
+				game.getBallService().setCurrentBall(StoreScreen.this.slider.getCurrentItem());
 			}
 		});
 		addToBottom(backButton);

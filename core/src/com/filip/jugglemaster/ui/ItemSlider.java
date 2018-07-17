@@ -1,18 +1,20 @@
 package com.filip.jugglemaster.ui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.filip.jugglemaster.assets.Assets;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemSlider extends Actor
 {
+	private List<String> itemsPaths;
 	private List<Image> items;
 	private int selectedItem;
 
@@ -24,8 +26,10 @@ public class ItemSlider extends Actor
 		initListeners();
 	}
 
-	public void addItem(Image image)
+	public void addItem(String itemName)
 	{
+		Image image = new Image(Assets.manager.get(itemName, Texture.class));
+		itemsPaths.add(itemName);
 		items.add(image);
 		image.setWidth(image.getWidth() * this.getHeight() / image.getHeight());
 		image.setHeight(this.getHeight());
@@ -59,6 +63,7 @@ public class ItemSlider extends Actor
 	private void initList()
 	{
 		items = new ArrayList<Image>();
+		itemsPaths = new ArrayList<String>();
 		selectedItem = 0;
 	}
 
@@ -69,5 +74,10 @@ public class ItemSlider extends Actor
 		Image img = items.get(selectedItem);
 		img.setPosition(Gdx.graphics.getWidth()/2f - img.getWidth()/2f, getY());
 		img.draw(batch, parentAlpha);
+	}
+
+	public String getCurrentItem()
+	{
+		return itemsPaths.get(selectedItem);
 	}
 }
