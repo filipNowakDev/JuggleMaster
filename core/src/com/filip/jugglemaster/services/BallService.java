@@ -2,7 +2,6 @@ package com.filip.jugglemaster.services;
 
 import com.badlogic.gdx.Preferences;
 import com.filip.jugglemaster.assets.Assets;
-import com.filip.jugglemaster.entities.Ball;
 
 
 public class BallService
@@ -19,7 +18,7 @@ public class BallService
 
 	private void initBall()
 	{
-		if(!preferences.contains(BALL))
+		if (!preferences.contains(BALL))
 			this.currentBall = Assets.ball;
 		else
 			this.currentBall = preferences.getString(BALL);

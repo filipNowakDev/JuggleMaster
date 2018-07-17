@@ -38,6 +38,7 @@ public class StoreScreen extends AbstractMenuScreen
 		addToBottom(slider, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/4f);
 		slider.addItem(Assets.ball);
 		slider.addItem(Assets.rainbowBall);
+		slider.addItem(Assets.billiardBall);
 		stage.addActor(slider);
 	}
 
