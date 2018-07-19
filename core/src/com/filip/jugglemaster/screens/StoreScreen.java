@@ -30,15 +30,21 @@ public class StoreScreen extends AbstractMenuScreen
 		initTitle();
 		initSlider();
 		initBackButton();
+		addItemsToSlider();
+	}
+
+	private void addItemsToSlider()
+	{
+		slider.addItem(Assets.ball, game.getBallService().getCurrentBall());
+		slider.addItem(Assets.rainbowBall, game.getBallService().getCurrentBall());
+		slider.addItem(Assets.billiardBall, game.getBallService().getCurrentBall());
+
 	}
 
 	private void initSlider()
 	{
-		slider = new ItemSlider(Gdx.graphics.getHeight()/4f);
+		slider = new ItemSlider(Gdx.graphics.getHeight()/4f, stage);
 		addToBottom(slider, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/4f);
-		slider.addItem(Assets.ball);
-		slider.addItem(Assets.rainbowBall);
-		slider.addItem(Assets.billiardBall);
 		stage.addActor(slider);
 	}
 
