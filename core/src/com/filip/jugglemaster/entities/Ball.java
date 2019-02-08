@@ -2,40 +2,47 @@ package com.filip.jugglemaster.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.filip.jugglemaster.assets.Assets;
+import com.filip.jugglemaster.services.BallService;
 import com.filip.jugglemaster.services.SoundService;
 
 public class Ball extends Image
 {
 	private static final int width = Gdx.graphics.getWidth() / 5;
 	private static final int height = Gdx.graphics.getWidth() / 5;
-	private static int starting_x = 190;
+	private static int starting_x;
 	private static int starting_y = 0;
 	private Vector2 speed;
 	private float angleSpeed = 0;
 	private boolean onTheFloor;
 	private SoundService soundService;
+	private BallService ballService;
 
-	public Ball(SoundService soundService)
+	public Ball(SoundService soundService, BallService ballService)
 	{
 		super(Assets.manager.get(Assets.ball, Texture.class));
-		init(soundService);
+		init(soundService, ballService);
 	}
 
-	private void init(SoundService soundService)
+	private void init(SoundService soundService, BallService ballService)
 	{
 		speed = new Vector2(0, 0);
 		this.soundService = soundService;
+		this.ballService = ballService;
+		this.setDrawable(new TextureRegionDrawable(new TextureRegion(Assets.manager.get(ballService.getCurrentBall(), Texture.class))));
 		onTheFloor = true;
 		this.setDebug(false);
 		this.setOrigin(width / 2, height / 2);
 		this.setSize(width, height);
 		starting_x = Gdx.graphics.getWidth() / 2 - width / 2;
 		this.setPosition(starting_x, starting_y);
+
 	}
 
 	public void reactOnClick(final float x, final float y)

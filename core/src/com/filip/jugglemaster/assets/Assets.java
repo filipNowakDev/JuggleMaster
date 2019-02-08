@@ -26,6 +26,10 @@ public class Assets
 
 	public static final String uiSkin = "skin/flat-earth-ui.json";
 
+	public static final String rainbowBall = "images/balls/RainbowBall.png";
+	public static final String  billiardBall = "images/balls/BilliardBall.png";
+
+
 	//------SOUNDS--------
 	public static final String kick = "sound/smackSound.mp3";
 	public static final String ding = "sound/ding.mp3";
@@ -86,6 +90,9 @@ public class Assets
 		manager.load(coin, Texture.class);
 		manager.load(uiAtlas, TextureAtlas.class);
 		manager.load(uiSkin, Skin.class);
+
+		manager.load(rainbowBall, Texture.class);
+		manager.load(billiardBall, Texture.class);
 
 	}
 

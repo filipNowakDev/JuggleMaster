@@ -37,7 +37,7 @@ public class MainMenuScreen extends AbstractMenuScreen
 	{
 		initTitleLabel();
 		initPlayButton();
-		//initStoreButton();
+		initStoreButton();
 		initOptionsButton();
 		initExitButton();
 	}
@@ -76,6 +76,7 @@ public class MainMenuScreen extends AbstractMenuScreen
 			@Override
 			public void onClick()
 			{
+				game.setScreen(new StoreScreen(game));
 			}
 		});
 		addToBottom(storeButton);

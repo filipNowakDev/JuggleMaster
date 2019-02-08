@@ -6,6 +6,7 @@ import com.badlogic.gdx.Preferences;
 import com.filip.jugglemaster.assets.Assets;
 import com.filip.jugglemaster.screens.MainMenuScreen;
 import com.filip.jugglemaster.screens.SplashScreen;
+import com.filip.jugglemaster.services.BallService;
 import com.filip.jugglemaster.services.OptionsService;
 import com.filip.jugglemaster.services.ScoreService;
 import com.filip.jugglemaster.services.SoundService;
@@ -23,6 +24,7 @@ public class JuggleMasterGame extends Game
 	private ScoreService scoreService;
 	private SoundService soundService;
 	private OptionsService optionsService;
+	private BallService ballService;
 
 	@Override
 	public void create()
@@ -32,7 +34,13 @@ public class JuggleMasterGame extends Game
 		initScoreService();
 		initAssets();
 		initSoundService();
+		initBallService();
 		this.setScreen(new MainMenuScreen(this));
+	}
+
+	private void initBallService()
+	{
+		ballService = new BallService(preferences);
 	}
 
 	private void initOptionsService()
@@ -104,5 +112,10 @@ public class JuggleMasterGame extends Game
 	public OptionsService getOptionsService()
 	{
 		return optionsService;
+	}
+
+	public BallService getBallService()
+	{
+		return ballService;
 	}
 }

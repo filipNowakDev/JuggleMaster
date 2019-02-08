@@ -32,6 +32,17 @@ public abstract class AbstractMenuScreen extends AbstractScreen
 	public void addToBottom(Actor actor)
 	{
 		itemList.add(actor);
+		actor.setWidth(Gdx.graphics.getWidth()/2);
+		actor.setHeight(Gdx.graphics.getHeight()/10);
+		stage.addActor(actor);
+		updatePositions();
+	}
+
+	public void addToBottom(Actor actor, float width, float height)
+	{
+		itemList.add(actor);
+		actor.setWidth(width);
+		actor.setHeight(height);
 		stage.addActor(actor);
 		updatePositions();
 	}
@@ -41,8 +52,6 @@ public abstract class AbstractMenuScreen extends AbstractScreen
 		for(int i = 0; i < itemList.size(); i++)
 		{
 			Actor actor = itemList.get(i);
-			actor.setWidth(Gdx.graphics.getWidth()/2);
-			actor.setHeight(Gdx.graphics.getHeight()/10);
 			actor.setPosition(stage.getWidth() / 2 - actor.getWidth() / 2, ((itemList.size() - i) * stage.getHeight() / (itemList.size() + 1)) - actor.getHeight() / 2);
 		}
 	}
